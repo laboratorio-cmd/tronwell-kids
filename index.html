@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRONWELL KIDS · Practice Zone</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<!-- Twemoji: the same emoji pictures on every computer, tablet and phone -->
+<script src="https://cdn.jsdelivr.net/npm/@twemoji/api@15.1.0/dist/twemoji.min.js" crossorigin="anonymous" defer></script>
+<style>
+:root{
+  --bg:#fdfaf5; --card:#ffffff; --ink:#3a3f58; --soft-ink:#7a8099;
+  --mint:#cdf2e3; --mint-d:#2f9e78;
+  --lav:#e4dcff; --lav-d:#6c56d6;
+  --peach:#ffe2cf; --peach-d:#e07a3c;
+  --butter:#fff4c2; --butter-d:#c99a06;
+  --sky:#d8ecff; --sky-d:#2e7ad1;
+  --pink:#ffdce8; --pink-d:#d9537f;
+  --blue:#0a62c4; --orange:#f7a600;
+  --ok:#2f9e78; --no:#e0605c;
+  --r:22px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;
+  background-image:radial-gradient(circle at 8% 12%,#ffe9f1 0 90px,transparent 91px),radial-gradient(circle at 92% 30%,#e6f7ef 0 120px,transparent 121px),radial-gradient(circle at 15% 85%,#eee8ff 0 110px,transparent 111px);background-attachment:fixed}
+h1,h2,h3,.baloo{font-family:'Baloo 2',cursive;line-height:1.1}
+button{font-family:inherit;cursor:pointer;border:none}
+img{display:block}
+img.emoji{display:inline-block;height:1em;width:1em;margin:0 .04em;vertical-align:-.12em}
+
+/* ── HEADER ── */
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:3px dashed #f1e6d6}
+.hwrap{max-width:1180px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.logo{cursor:pointer;display:flex;flex-direction:column;width:150px}
+.logo .lw{font-family:Arial,Helvetica,sans-serif;font-weight:800;font-size:30px;color:var(--blue);letter-spacing:-1px;line-height:1}
+.logo .lbar{position:relative;height:15px;margin-top:3px;background:linear-gradient(90deg,rgba(3,169,244,0) 0%,#6cc9f7 55%,#03a9f4 100%);display:flex;justify-content:flex-end;align-items:center;padding-right:9px}
+.logo .lbar span{font-size:9.5px;font-weight:800;font-style:italic;color:#fff;letter-spacing:.2px}
+.logo .lbar i{position:absolute;right:0;top:0;bottom:0;width:4px;background:var(--orange)}
+.kidstag{background:linear-gradient(135deg,#ffd6e5,#e4dcff);color:#6c56d6;font-family:'Baloo 2';font-weight:800;font-size:18px;padding:4px 14px;border-radius:14px;transform:rotate(-4deg)}
+nav{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+nav button{background:transparent;color:var(--ink);font-weight:800;font-size:14px;padding:8px 14px;border-radius:14px;transition:.15s}
+nav button:hover{background:#f6efe4}
+nav button.on{background:var(--sky);color:var(--sky-d)}
+nav .star-pill{background:var(--butter);color:#8a6a00}
+
+main{max-width:1180px;margin:0 auto;padding:26px 20px 60px}
+
+/* ── HERO ── */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:center;background:linear-gradient(135deg,#fff 0%,#fff7ee 100%);border-radius:32px;padding:34px;box-shadow:0 10px 30px rgba(120,100,60,.08);position:relative;overflow:hidden}
+.hero h1{font-size:clamp(34px,5vw,54px);color:var(--ink)}
+.hero h1 span{color:var(--lav-d)}
+.hero p{font-size:17px;color:var(--soft-ink);margin:12px 0 20px;max-width:480px}
+.hero .ph{border-radius:28px;overflow:hidden;height:300px;background:linear-gradient(135deg,var(--sky),var(--lav));position:relative;transform:rotate(2deg);box-shadow:0 12px 28px rgba(80,80,140,.18)}
+.hero .ph img{width:100%;height:100%;object-fit:cover}
+.float{position:absolute;font-size:34px;animation:bob 3s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-10px)}}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{background:var(--lav-d);color:#fff;font-weight:800;font-size:16px;padding:13px 24px;border-radius:18px;box-shadow:0 5px 0 #4f3bb0;transition:.12s}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 #4f3bb0}
+.btn.alt{background:#fff;color:var(--ink);box-shadow:0 5px 0 #e5dccd;border:2px solid #efe6d8}
+.btn.mint{background:var(--mint-d);box-shadow:0 5px 0 #1f7a5b}
+.btn.peach{background:var(--peach-d);box-shadow:0 5px 0 #b35a26}
+.btn.sm{font-size:14px;padding:9px 16px;border-radius:14px}
+.mylevel{margin-top:16px;display:inline-flex;align-items:center;gap:8px;background:var(--mint);color:var(--mint-d);font-weight:800;padding:7px 14px;border-radius:14px;font-size:14px;cursor:pointer}
+
+/* ── SECTIONS ── */
+.sec{margin-top:40px}
+.sec h2{font-size:32px;margin-bottom:4px}
+.sec .sub{color:var(--soft-ink);margin-bottom:18px}
+
+/* LEVEL CARDS */
+.levels{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.lvcard{background:var(--card);border-radius:var(--r);overflow:hidden;cursor:pointer;box-shadow:0 8px 22px rgba(120,100,60,.08);transition:.2s;border:3px solid transparent;position:relative}
+.lvcard:hover{transform:translateY(-6px) rotate(-.5deg)}
+.lvcard .top{height:130px;position:relative;display:flex;align-items:center;justify-content:center;font-size:70px;overflow:hidden}
+.lvcard .top::before{content:"✦  ·  ✧  ·  ✦";position:absolute;top:10px;left:14px;font-size:14px;color:rgba(255,255,255,.9);letter-spacing:3px}
+.lvcard .step{position:absolute;bottom:10px;left:14px;background:rgba(255,255,255,.85);border-radius:10px;padding:2px 10px;font-size:12px;font-weight:800}
+.lvcard .bd{padding:16px 20px 20px}
+.lvcard h3{font-size:28px}
+.lvcard .tags{display:flex;gap:6px;margin:6px 0 10px;flex-wrap:wrap}
+.tag{font-size:12px;font-weight:800;padding:3px 10px;border-radius:10px;background:#f6efe4}
+.lvcard p{color:var(--soft-ink);font-size:14px}
+.ribbon{position:absolute;top:12px;right:12px;background:#fff;color:#8a6a00;font-weight:800;font-size:12px;padding:4px 10px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.lvcard.soon .top{filter:saturate(.55)}
+
+/* CREW */
+.crew{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.mate{background:#fff;border-radius:20px;padding:16px 12px;text-align:center;box-shadow:0 5px 16px rgba(120,100,60,.07);cursor:pointer;transition:.15s}
+.mate:hover{transform:translateY(-4px)}
+.mate .av{font-size:52px;line-height:1.2}
+.mate b{font-family:'Baloo 2';font-size:21px;display:block}
+.mate span{font-size:13px;color:var(--soft-ink);display:block}
+
+/* FEATURE TILES */
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.ft{border-radius:20px;padding:18px;text-align:center}
+.ft .ic{font-size:36px}
+.ft b{display:block;font-family:'Baloo 2';font-size:19px;margin-top:4px}
+.ft span{font-size:13px;color:var(--soft-ink)}
+
+/* BADGES */
+.badges{display:flex;gap:14px;flex-wrap:wrap}
+.bdg{background:#fff;border-radius:20px;padding:14px 18px;display:flex;align-items:center;gap:12px;box-shadow:0 5px 16px rgba(120,100,60,.07);min-width:220px;flex:1}
+.bdg .ic{font-size:34px;filter:grayscale(1);opacity:.4}
+.bdg.got .ic{filter:none;opacity:1}
+.bdg b{font-family:'Baloo 2';font-size:18px;display:block}
+.bdg small{color:var(--soft-ink)}
+
+/* ── LEVEL / MISSION HEAD ── */
+.zhead{border-radius:30px;padding:28px 30px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.zhead .big{font-size:64px}
+.zhead h1{font-size:44px}
+.zhead p{color:var(--soft-ink);font-weight:600}
+.zhead .kicker{font-weight:800;font-size:13px;letter-spacing:1px;text-transform:uppercase;opacity:.75}
+.zinfo{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.zinfo span{background:rgba(255,255,255,.75);border-radius:12px;padding:5px 12px;font-size:13px;font-weight:700}
+.soonbox{margin-top:18px;background:#fff;border:3px dashed #f1e6d6;border-radius:20px;padding:14px 18px;font-weight:700}
+.testtip{margin-top:16px;background:#fff;border:3px dashed #f1e6d6;border-radius:18px;padding:12px 16px;font-size:14px}
+.testtip b{color:var(--peach-d)}
+
+/* MISSIONS */
+.missions{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+.mis{background:#fff;border-radius:22px;padding:16px;cursor:pointer;box-shadow:0 6px 18px rgba(120,100,60,.08);display:flex;gap:14px;align-items:center;border:3px solid transparent;transition:.18s}
+.mis:hover{transform:translateY(-4px);border-color:#f1e6d6}
+.mis .ic{font-size:38px;width:68px;height:68px;border-radius:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mis small{display:block;font-weight:800;color:var(--soft-ink);font-size:11px;letter-spacing:1px;text-transform:uppercase}
+.mis b{font-family:'Baloo 2';font-size:21px;display:block;line-height:1.1}
+.mis span{font-size:13px;color:var(--soft-ink);display:block;line-height:1.3;margin-top:2px}
+.mis .prog{font-size:12px;font-weight:800;color:#8a6a00;margin-top:5px}
+.mis.soon{opacity:.6}
+
+/* ACTIVITIES */
+.acts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+.act{background:#fff;border-radius:22px;padding:20px 16px;text-align:center;cursor:pointer;box-shadow:0 6px 18px rgba(120,100,60,.08);transition:.18s;border:3px solid transparent;position:relative}
+.act:hover{transform:translateY(-5px);border-color:#f1e6d6}
+.act .ic{font-size:44px;width:78px;height:78px;border-radius:24px;margin:0 auto 10px;display:flex;align-items:center;justify-content:center}
+.act b{font-family:'Baloo 2';font-size:20px;display:block}
+.act span{font-size:13px;color:var(--soft-ink)}
+.act .rate{position:absolute;top:10px;right:12px;font-size:14px;letter-spacing:1px}
+.act.rec{border-color:var(--peach)}
+.act .rtag{position:absolute;top:10px;left:10px;background:var(--peach);color:var(--peach-d);font-size:11px;font-weight:800;padding:2px 8px;border-radius:8px}
+.back{background:#fff;color:var(--ink);font-weight:800;padding:8px 16px;border-radius:14px;margin-bottom:16px;box-shadow:0 3px 0 #efe6d8}
+
+/* ── ACTIVITY STAGE ── */
+.stage{background:#fff;border-radius:30px;padding:26px;box-shadow:0 10px 28px rgba(120,100,60,.09);margin-top:10px}
+.stage-h{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.stage-h h2{font-size:30px}
+.stage-h .count{margin-left:auto;background:var(--butter);color:#8a6a00;font-weight:800;padding:6px 14px;border-radius:12px}
+.hint{color:var(--soft-ink);font-size:14px;margin-bottom:14px}
+.center{text-align:center}
+
+/* Tronny (instructions) */
+.tronny{display:flex;align-items:flex-start;gap:12px;margin-bottom:18px}
+.tr-ava{font-size:46px;line-height:1}
+.tr-bub{position:relative;flex:1;background:var(--sky);border-radius:18px;padding:10px 16px;font-size:15px}
+.tr-bub::before{content:"";position:absolute;left:-8px;top:16px;border:8px solid transparent;border-right-color:var(--sky);border-left:0}
+.tr-bub b{display:block}
+.tr-bub span{display:block;color:var(--sky-d);font-weight:700;font-size:14px}
+.tr-bub small{display:block;color:var(--soft-ink);margin-top:2px;font-weight:600}
+.tr-say{width:52px;height:52px;border-radius:50%;background:#fff;font-size:24px;box-shadow:0 4px 0 #cfe1f5;border:2px solid var(--sky);flex-shrink:0}
+.tr-say:active{transform:translateY(3px);box-shadow:0 1px 0 #cfe1f5}
+
+/* flashcards */
+.fgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.fc{height:170px;perspective:800px;cursor:pointer}
+.fc .in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.fc.flip .in{transform:rotateY(180deg)}
+.fc .f,.fc .b{position:absolute;inset:0;border-radius:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;backface-visibility:hidden;padding:10px;text-align:center}
+.fc .f{font-size:64px}
+.fc .b{transform:rotateY(180deg);font-family:'Baloo 2';font-size:26px;font-weight:800}
+.fc .b small{font-family:'Nunito';font-size:13px;font-weight:700;color:var(--soft-ink);margin-top:4px;line-height:1.3}
+
+/* memory */
+.mgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:640px;margin:0 auto}
+.mc{height:105px;border-radius:18px;background:linear-gradient(135deg,var(--lav),var(--sky));display:flex;align-items:center;justify-content:center;text-align:center;font-size:0;font-weight:800;cursor:pointer;transition:.2s;box-shadow:0 4px 0 #c9bff0;user-select:none;padding:4px}
+.mc::after{content:"?";font-family:'Baloo 2';font-size:40px;color:#fff}
+.mc.open,.mc.done{background:#fff;border:3px solid var(--lav);font-size:20px;box-shadow:none;line-height:1.1}
+.mc.open::after,.mc.done::after{content:""}
+.mc.emoji.open,.mc.emoji.done{font-size:46px}
+.mc.done{border-color:var(--mint-d);background:var(--mint)}
+
+/* option buttons */
+.opts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:620px;margin:18px auto 0}
+.opts.four{grid-template-columns:repeat(4,1fr);max-width:720px}
+.opts.text{grid-template-columns:1fr;max-width:560px}
+.op{background:#fff;border:3px solid #efe6d8;border-radius:20px;padding:16px;font-size:52px;transition:.15s;box-shadow:0 4px 0 #efe6d8;color:var(--ink)}
+.opts.text .op{font-size:18px;font-weight:700;text-align:left;padding:13px 18px}
+.op:hover{border-color:var(--lav-d)}
+.op.ok{background:var(--mint);border-color:var(--ok);box-shadow:0 4px 0 var(--ok)}
+.op.no{background:var(--pink);border-color:var(--no);box-shadow:0 4px 0 var(--no);animation:shake .4s}
+.op.dis{pointer-events:none}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.speaker{width:110px;height:110px;border-radius:50%;background:linear-gradient(135deg,var(--peach),var(--pink));font-size:52px;box-shadow:0 6px 0 #f1b89a;margin:6px auto;display:flex;align-items:center;justify-content:center}
+.speaker:active{transform:translateY(3px)}
+.fallback{display:inline-block;margin-top:8px;background:var(--butter);padding:4px 12px;border-radius:10px;font-weight:800}
+
+/* spelling */
+.bigemoji{font-size:90px;text-align:center;line-height:1.2}
+.clue{text-align:center;color:var(--soft-ink);font-weight:700;font-size:14px}
+.slots,.tiles{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:14px 0}
+.slot{width:48px;height:56px;border-radius:14px;border:3px dashed #d9cfbf;display:flex;align-items:center;justify-content:center;font-family:'Baloo 2';font-size:28px;font-weight:800;cursor:pointer;background:#fffdf8}
+.slot.full{border-style:solid;border-color:var(--lav-d);background:var(--lav)}
+.tile{width:48px;height:56px;border-radius:14px;background:var(--butter);font-family:'Baloo 2';font-size:28px;font-weight:800;color:#6b5200;box-shadow:0 4px 0 #e8d27a}
+.tile.used{visibility:hidden}
+.row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+
+/* balloons */
+.balloons{font-size:40px;text-align:center;letter-spacing:4px;min-height:56px}
+.masked{display:flex;gap:8px;justify-content:center;margin:12px 0;flex-wrap:wrap}
+.masked span{width:40px;height:50px;border-bottom:4px solid var(--lav-d);font-family:'Baloo 2';font-size:30px;font-weight:800;text-align:center;text-transform:uppercase}
+.kb{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:620px;margin:14px auto 0}
+.key{width:42px;height:46px;border-radius:12px;background:var(--sky);font-weight:800;font-size:18px;color:var(--sky-d);box-shadow:0 3px 0 #b3d4f5}
+.key.ok{background:var(--mint);color:var(--ok);box-shadow:none;pointer-events:none}
+.key.no{background:#eee;color:#bbb;box-shadow:none;pointer-events:none}
+
+/* builder */
+.line{min-height:62px;border:3px dashed #d9cfbf;border-radius:18px;padding:10px;display:flex;flex-wrap:wrap;gap:8px;background:#fffdf8;margin-bottom:12px}
+.pool{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.chip{background:var(--peach);color:#8a4210;font-weight:800;font-size:17px;padding:10px 16px;border-radius:14px;box-shadow:0 4px 0 #f0bf9c}
+.line .chip{background:var(--lav);color:var(--lav-d);box-shadow:0 4px 0 #c9bff0}
+
+/* grammar */
+.gtip{background:var(--butter);border-radius:18px;padding:12px 16px;margin-bottom:16px}
+.gtip summary{font-weight:800;cursor:pointer;color:#6b5200}
+.gtip ul{margin:8px 0 6px 20px}
+.gtip li{margin:3px 0;font-weight:700}
+.gtip p{font-size:14px;color:#6b5200}
+.gq{font-family:'Baloo 2';font-size:30px;text-align:center;margin:10px 0}
+.gq .gap{display:inline-block;min-width:90px;border-bottom:4px solid var(--lav-d);color:var(--lav-d)}
+
+/* story */
+.story{display:grid;grid-template-columns:1fr 1.3fr;gap:22px;align-items:start}
+.story .pic{border-radius:24px;height:230px;background:linear-gradient(135deg,var(--mint),var(--sky));display:flex;align-items:center;justify-content:center;font-size:72px;letter-spacing:6px}
+.story .txt{background:#fffaf0;border-radius:20px;padding:18px 20px;font-size:17px;line-height:1.75}
+.q{margin-top:16px}
+.q b{display:block;margin-bottom:6px}
+
+.fb{min-height:28px;text-align:center;font-weight:800;margin-top:12px;font-size:17px}
+.fb.ok{color:var(--ok)} .fb.no{color:var(--no)}
+.done-box{text-align:center;padding:20px}
+.done-box .big{font-size:80px}
+.done-box h2{font-size:36px}
+.done-box .rating{font-size:34px;letter-spacing:4px;margin:6px 0}
+.progress{height:14px;background:#f3ecdf;border-radius:10px;overflow:hidden;margin:6px 0 20px}
+.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--pink-d),var(--lav-d));border-radius:10px;transition:width .4s}
+
+/* ── PLACEMENT TEST ── */
+.test-hero{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
+.test-hero .ph{height:260px;border-radius:26px;overflow:hidden;background:linear-gradient(135deg,var(--butter),var(--peach))}
+.test-hero .ph img{width:100%;height:100%;object-fit:cover}
+.steps{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 20px}
+.steps div{background:#fff;border-radius:14px;padding:7px 12px;font-weight:700;font-size:13px;box-shadow:0 3px 10px rgba(0,0,0,.05)}
+.blocktag{display:inline-block;font-weight:800;font-size:13px;padding:4px 12px;border-radius:10px;margin-bottom:8px}
+.tq{font-family:'Baloo 2';font-size:28px;text-align:center;margin:6px 0}
+.tshow{font-size:84px;text-align:center}
+.reading{background:#fffaf0;border-radius:18px;padding:16px 20px;font-size:17px;max-width:640px;margin:0 auto}
+.result{border-radius:30px;padding:30px;text-align:center}
+.result .big{font-size:90px}
+.result h1{font-size:48px}
+.bars{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:640px;margin:22px auto}
+.bars div{background:#fff;border-radius:16px;padding:10px}
+.bars b{font-family:'Baloo 2';font-size:20px;display:block}
+.inp{border:3px solid #efe6d8;border-radius:14px;padding:10px 14px;font-size:16px;font-family:inherit;width:100%;max-width:260px;outline:none}
+.inp:focus{border-color:var(--lav-d)}
+
+/* toast + burst */
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(120px);background:#fff;padding:12px 22px;border-radius:18px;font-weight:800;box-shadow:0 10px 28px rgba(0,0,0,.15);transition:.35s;z-index:99}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.burst{position:fixed;font-size:28px;pointer-events:none;z-index:98;animation:fly 1s ease-out forwards}
+@keyframes fly{to{transform:translate(var(--dx),var(--dy)) scale(.6);opacity:0}}
+
+footer{text-align:center;color:var(--soft-ink);font-size:13px;padding:24px;border-top:3px dashed #f1e6d6}
+footer b{color:var(--blue)}
+
+@media(max-width:900px){
+  .hero,.test-hero,.story{grid-template-columns:1fr}
+  .levels,.missions{grid-template-columns:1fr 1fr}
+  .crew{grid-template-columns:repeat(3,1fr)}
+  .feat,.acts,.fgrid{grid-template-columns:repeat(2,1fr)}
+  .opts.four{grid-template-columns:repeat(2,1fr)}
+  nav{margin-left:0}
+}
+@media(max-width:560px){
+  .levels,.missions{grid-template-columns:1fr}
+  .crew{grid-template-columns:repeat(2,1fr)}
+  .mgrid{grid-template-columns:repeat(3,1fr)}
+  .bars{grid-template-columns:1fr 1fr}
+  .op{font-size:40px}
+  .zhead h1{font-size:34px}
+  .stage{padding:18px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hwrap">
+    <div class="logo" onclick="go('home')" title="Tronwell">
+      <div class="lw">Tronwell</div>
+      <div class="lbar"><span>Always More</span><i></i></div>
+    </div>
+    <div class="kidstag">KIDS</div>
+    <nav id="nav">
+      <button data-v="home" onclick="go('home')">🏠 Home</button>
+      <button data-v="levels" onclick="go('levels')">🪐 Levels</button>
+      <button data-v="test" onclick="go('test')">🎯 Mide tu inglés</button>
+      <button data-v="stars" class="star-pill" onclick="go('stars')">⭐ <span id="starCount">0</span></button>
+    </nav>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<footer>
+  <b>TRONWELL KIDS</b> · Practice Zone · ✨ Tiny Stars ➔ 🌙 Moon Walkers ➔ 🚀 Rocket Riders ➔ 🪐 Planet Explorers ➔ ☄️ Comet Chasers ➔ 🌌 Galaxy Masters · Dudas: kids@tronwell.cl
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* =========================================================
+   IMAGES (Pexels, free to use)
+   ========================================================= */
+function px(id){return "https://images.pexels.com/photos/"+id+"/pexels-photo-"+id+".jpeg?auto=compress&cs=tinysrgb&w=900";}
+const IMG={hero:px(5212687),test:px(5621938)};
+
+/* =========================================================
+   THE CREW
+   ========================================================= */
+const CREW=[
+  {name:"Tronny",av:"🤖",info:"The ship's robot",say:"Hi! I'm Tronny, the ship's robot. I explain every game!"},
+  {name:"Leo",av:"👦🏽",info:"10 · Chile · football & rockets",say:"Hello! I'm Leo. I'm ten and I'm from Chile. I love football and rockets!"},
+  {name:"Sofi",av:"👧🏽",info:"8 · Chile · animals & painting",say:"Hi! I'm Sofi, Leo's sister. I'm eight. I love animals and painting!"},
+  {name:"Kai",av:"👧🏼",info:"11 · Australia · music & table tennis",say:"Hello! I'm Kai, Leo and Sofi's cousin. I'm from Australia. I love music!"},
+  {name:"Zib",av:"👽",info:"Planet Zoom · learning English too!",say:"Zib, zib! I'm Zib, from planet Zoom. I'm learning English too!"}
+];
+
+/* =========================================================
+   LEVELS & MISSIONS
+   Only Moon Walkers has content in this pilot; the other levels show their missions as "coming soon".
+   ========================================================= */
+const LEVELS=[
+{ id:"tiny", name:"Tiny Stars", emoji:"✨", cefr:"A0", bg:"var(--butter)", deep:"var(--butter-d)", sky:"linear-gradient(135deg,#ffe98a,#ffc8a8)",
+  desc:"Your very first words: colours, numbers, animals and toys.",
+  missions:[
+    {n:0,name:"Hello, Star!",emoji:"👋",topic:"Greetings · my name"},
+    {n:1,name:"Rainbow Colours",emoji:"🎨",topic:"Colours"},
+    {n:2,name:"Count With Me",emoji:"🔢",topic:"Numbers 1–20"},
+    {n:3,name:"Head to Toes",emoji:"👀",topic:"My body"},
+    {n:4,name:"Pet Pals",emoji:"🐶",topic:"Pets & farm animals"},
+    {n:5,name:"Yummy Food",emoji:"🍎",topic:"Food"},
+    {n:6,name:"Toy Box",emoji:"🧸",topic:"Toys"},
+    {n:7,name:"My Family",emoji:"👪",topic:"Family"},
+    {n:8,name:"Back to School",emoji:"✏️",topic:"The classroom"},
+    {n:9,name:"Sunny or Rainy?",emoji:"☀️",topic:"Weather & clothes"}
+  ]},
+{ id:"moon", name:"Moon Walkers", emoji:"🌙", cefr:"A0 – A1", bg:"var(--lav)", deep:"var(--lav-d)", sky:"linear-gradient(135deg,#b9a8ff,#8fc3ff)", ready:true,
+  desc:"Family, clothes, home, feelings, routines, animals and sports.",
+  missions:[] /* filled below */ },
+{ id:"rocket", name:"Rocket Riders", emoji:"🚀", cefr:"A1", bg:"var(--sky)", deep:"var(--sky-d)", sky:"linear-gradient(135deg,#8fd0ff,#a8f0dc)",
+  desc:"People, food, school, music, sports and travel.",
+  missions:[
+    {n:0,name:"Hi, Crew!",emoji:"👋",topic:"Greetings & introductions"},
+    {n:1,name:"Who's Who?",emoji:"🕵️",topic:"Describing people · can · have got"},
+    {n:2,name:"Snack Attack",emoji:"🍔",topic:"Food & drink · some / any"},
+    {n:3,name:"A Day in My Life",emoji:"📅",topic:"Routines · present simple"},
+    {n:4,name:"School Zone",emoji:"🎒",topic:"School subjects · present continuous"},
+    {n:5,name:"Music Makers",emoji:"🎸",topic:"Music · comparatives & superlatives"},
+    {n:6,name:"Sports Stars",emoji:"🏆",topic:"Sports · was / were · past simple"},
+    {n:7,name:"Tech Time Machine",emoji:"⌛",topic:"Technology · irregular past"},
+    {n:8,name:"Around the Globe",emoji:"🌍",topic:"Geography · have to / must"},
+    {n:9,name:"Ready, Set, Travel!",emoji:"✈️",topic:"Transport · going to · directions"}
+  ]},
+{ id:"planet", name:"Planet Explorers", emoji:"🪐", cefr:"A2", bg:"var(--mint)", deep:"var(--mint-d)", sky:"linear-gradient(135deg,#8ee6c4,#fff09a)",
+  desc:"Culture, tech, nature, health and the future.",
+  missions:[
+    {n:0,name:"Meet the Gang",emoji:"👋",topic:"Introductions"},
+    {n:1,name:"Culture Carnival",emoji:"🎭",topic:"Arts & traditions · present simple"},
+    {n:2,name:"Looks & Vibes",emoji:"😎",topic:"Fashion · present continuous"},
+    {n:3,name:"Wild Planet",emoji:"🐘",topic:"Habitats · past simple"},
+    {n:4,name:"Gadget Lab",emoji:"📱",topic:"Technology · used to"},
+    {n:5,name:"Dream Rooms",emoji:"🛋️",topic:"The home · relative clauses · must / have to"},
+    {n:6,name:"Healthy Heroes",emoji:"💪",topic:"Health · past continuous"},
+    {n:7,name:"Shopping Spree",emoji:"🛍️",topic:"Shopping · comparatives · future"},
+    {n:8,name:"Future Me",emoji:"🔮",topic:"Jobs · will · first conditional"},
+    {n:9,name:"Nature Quest",emoji:"🏞️",topic:"Nature · present perfect"}
+  ]},
+{ id:"comet", name:"Comet Chasers", emoji:"☄️", cefr:"B1", bg:"var(--peach)", deep:"var(--peach-d)", sky:"linear-gradient(135deg,#ffb58a,#ff8fb1)",
+  desc:"Digital life, weather, films, travel and mysteries.",
+  missions:[
+    {n:0,name:"Back in Orbit",emoji:"👋",topic:"Welcome back"},
+    {n:1,name:"Digital Life",emoji:"💻",topic:"Digital habits · -ing vs to"},
+    {n:2,name:"Wild Weather",emoji:"⛈️",topic:"Weather & climate · past simple & continuous"},
+    {n:3,name:"Chef's Table",emoji:"🍽️",topic:"Food · just / already / yet"},
+    {n:4,name:"Lights, Camera, Action!",emoji:"🎬",topic:"Film & TV · quantifiers"},
+    {n:5,name:"Extreme Challenge",emoji:"🧗",topic:"Competition · future forms · unless"},
+    {n:6,name:"Travel Tales",emoji:"🧳",topic:"Travel · must / should"},
+    {n:7,name:"Changemakers",emoji:"🤝",topic:"Relationships · second conditional"},
+    {n:8,name:"Case Closed",emoji:"🔎",topic:"Crime & law · the passive"},
+    {n:9,name:"Schools of the World",emoji:"🏫",topic:"Education · reported speech"}
+  ]},
+{ id:"galaxy", name:"Galaxy Masters", emoji:"🌌", cefr:"B1+ – B2", bg:"var(--pink)", deep:"var(--pink-d)", sky:"linear-gradient(135deg,#7b6cf0,#ff8fc0)",
+  desc:"Big goals, the planet, space, art and the world.",
+  missions:[
+    {n:0,name:"New Season",emoji:"👋",topic:"Welcome back"},
+    {n:1,name:"Winning Mindset",emoji:"🏅",topic:"Success & failure · tenses review"},
+    {n:2,name:"Eco Warriors",emoji:"♻️",topic:"The environment · past perfect"},
+    {n:3,name:"Trend Setters",emoji:"👟",topic:"Fashion · present perfect vs past"},
+    {n:4,name:"Career Quest",emoji:"💼",topic:"Careers · future continuous"},
+    {n:5,name:"Space Mission",emoji:"🛰️",topic:"Space · conditionals"},
+    {n:6,name:"Body & Mind",emoji:"🧘",topic:"Wellbeing · reported speech"},
+    {n:7,name:"Say It Without Words",emoji:"👀",topic:"Communication · the passive"},
+    {n:8,name:"Art Detectives",emoji:"🖼️",topic:"Art · modals of deduction"},
+    {n:9,name:"Festival Fever",emoji:"🎉",topic:"Celebrations · relative clauses"}
+  ]}
+];
+
+/* ---------- MOON WALKERS · pilot content ----------
+   vocab: w = word, e = picture, es = Spanish clue
+   spell: optional single words for Spell It / Balloons when the vocab has phrases
+   test: skill evaluated in class at the end of the mission */
+LEVELS[1].missions=[
+{ n:0, name:"ABC Launch", emoji:"🔤", topic:"Alphabet & classroom · a / an", test:null,
+  vocab:[
+    {w:"book",e:"📕",es:"libro"},{w:"pen",e:"🖊️",es:"lápiz pasta"},{w:"pencil",e:"✏️",es:"lápiz"},{w:"bag",e:"🎒",es:"mochila"},
+    {w:"ruler",e:"📏",es:"regla"},{w:"scissors",e:"✂️",es:"tijeras"},{w:"computer",e:"💻",es:"computador"},{w:"chair",e:"🪑",es:"silla"},
+    {w:"clock",e:"🕐",es:"reloj"},{w:"notebook",e:"📓",es:"cuaderno"},{w:"crayon",e:"🖍️",es:"lápiz de cera"},{w:"paper",e:"📄",es:"papel"}
+  ],
+  sentences:["My name is Leo.","How do you spell that?","What is this?","It is a red pencil.","This is my school bag.","Can you spell your name?"],
+  tip:{title:"a / an",rows:["a book · a pen · a ruler","an apple · an orange · an umbrella","What's this? — It's a pencil."],es:"Usamos an antes de un sonido de vocal (a, e, i, o, u) y a antes de una consonante."},
+  grammar:[
+    {q:"It's ___ apple.",o:["an","a","is"],a:0},
+    {q:"It's ___ book.",o:["a","an","am"],a:0},
+    {q:"___ is this? — It's a pen.",o:["What","Who","How"],a:0},
+    {q:"How do you ___ your name?",o:["spell","speak","sing"],a:0},
+    {q:"My name ___ Sofi.",o:["is","are","am"],a:0},
+    {q:"___ you spell it, please?",o:["Can","Is","Are"],a:0},
+    {q:"B - A - G spells ___.",o:["bag","big","bug"],a:0},
+    {q:"It's ___ orange crayon.",o:["an","a","two"],a:0}
+  ],
+  story:{title:"Zib Goes to School",pic:"👽🎒📚",
+    text:["Zib is a little alien. Today is his first day at school on Earth.","Leo says, 'Hello! What's your name?' — 'My name is Zib. Z-I-B.'","Zib has a big green bag. In his bag, he has a pencil, a ruler and a book.","'What's this?' asks Sofi. 'It's a crayon!' says Zib. 'It's purple, my favourite colour!'"],
+    qs:[{q:"Who is Zib?",o:["A little alien","A teacher","A robot"],a:0},
+        {q:"How do you spell his name?",o:["Z-I-B","Z-E-B","S-I-B"],a:0},
+        {q:"What colour is the crayon?",o:["Purple","Green","Red"],a:0}]},
+  odd:[
+    {items:["✏️","🖊️","🖍️","🍎"],a:3,why:"An apple is food. The others are for writing."},
+    {items:["📕","📓","📄","⚽"],a:3,why:"A ball is a toy. The others are made of paper."},
+    {items:["🎒","✂️","📏","🐶"],a:3,why:"A dog is an animal. The others are school things."},
+    {items:["💻","🕐","🪑","🍕"],a:3,why:"Pizza is food. The others are things in the classroom."}
+  ]},
+{ n:1, name:"My Crew", emoji:"👪", topic:"Family · verb to be", test:"Speaking",
+  vocab:[
+    {w:"mum",e:"👩",es:"mamá"},{w:"dad",e:"👨",es:"papá"},{w:"sister",e:"👧",es:"hermana"},{w:"brother",e:"👦",es:"hermano"},
+    {w:"grandma",e:"👵",es:"abuela"},{w:"grandpa",e:"👴",es:"abuelo"},{w:"baby",e:"👶",es:"bebé"},{w:"family",e:"👪",es:"familia"},
+    {w:"friend",e:"🤝",es:"amigo / amiga"},{w:"pet",e:"🐶",es:"mascota"}
+  ],
+  sentences:["This is my family.","Leo is my brother.","I am eight years old.","My grandma is very kind.","Kai is not my sister.","They are my best friends."],
+  tip:{title:"Verb to be",rows:["I am (I'm) · I am not (I'm not)","He / She / It is (he's) · isn't","You / We / They are (we're) · aren't"],es:"Con I usamos am; con he, she, it usamos is; con you, we, they usamos are."},
+  grammar:[
+    {q:"I ___ Sofi.",o:["am","is","are"],a:0},
+    {q:"Leo ___ my brother.",o:["is","am","are"],a:0},
+    {q:"We ___ a big family.",o:["are","is","am"],a:0},
+    {q:"My grandpa ___ seventy.",o:["is","are","am"],a:0},
+    {q:"Kai ___ my sister. She's my cousin.",o:["isn't","aren't","am not"],a:0},
+    {q:"They ___ my friends.",o:["are","is","am"],a:0},
+    {q:"I ___ ten. I'm eight!",o:["am not","is not","are not"],a:0},
+    {q:"You ___ my best friend!",o:["are","is","am"],a:0}
+  ],
+  story:{title:"Meet My Crew",pic:"👪🚀",
+    text:["Hi! I'm Sofi. I'm eight years old and I'm from Chile.","This is my brother, Leo. He's ten. He is funny and he loves football.","This is Kai. She isn't my sister — she's my cousin. She's from Australia.","And this is Zib. He isn't from Earth — he's an alien! We are a great crew."],
+    qs:[{q:"How old is Sofi?",o:["Eight","Ten","Eleven"],a:0},
+        {q:"Who is Kai?",o:["Sofi's sister","Sofi's cousin","Sofi's mum"],a:1},
+        {q:"Where is Zib from?",o:["Chile","Australia","He isn't from Earth"],a:2}]},
+  odd:[
+    {items:["👩","👨","👵","🐱"],a:3,why:"A cat is an animal. The others are people in a family."},
+    {items:["👶","👦","👧","🚗"],a:3,why:"A car is not a person."},
+    {items:["👴","👵","👪","🍰"],a:3,why:"Cake is food. The others are family."},
+    {items:["🐶","🐱","🐰","👨"],a:3,why:"Dad is a person. The others are pets."}
+  ]},
+{ n:2, name:"My Stuff", emoji:"👕", topic:"Clothes · this / that / these / those", test:"Listening",
+  vocab:[
+    {w:"T-shirt",e:"👕",es:"polera"},{w:"jeans",e:"👖",es:"jeans"},{w:"dress",e:"👗",es:"vestido"},{w:"trainers",e:"👟",es:"zapatillas"},
+    {w:"shoes",e:"👞",es:"zapatos"},{w:"cap",e:"🧢",es:"jockey"},{w:"socks",e:"🧦",es:"calcetines"},{w:"coat",e:"🧥",es:"abrigo"},
+    {w:"scarf",e:"🧣",es:"bufanda"},{w:"gloves",e:"🧤",es:"guantes"},{w:"shorts",e:"🩳",es:"shorts"},{w:"glasses",e:"👓",es:"lentes"}
+  ],
+  sentences:["This is my new T-shirt.","These are my red socks.","Is that your cap?","Are these your gloves?","No, they aren't.","Those trainers are cool."],
+  tip:{title:"this · that · these · those",rows:["this → one thing, near: this cap","that → one thing, far: that coat","these → many things, near: these socks","those → many things, far: those shoes"],es:"This / these = cerca. That / those = lejos. This / that = una cosa; these / those = varias."},
+  grammar:[
+    {q:"___ is my coat. (here, one)",o:["This","These","Those"],a:0},
+    {q:"___ are my shoes. (here, many)",o:["These","This","That"],a:0},
+    {q:"Look at ___ scarf over there!",o:["that","these","those"],a:0},
+    {q:"___ jeans over there are blue.",o:["Those","That","This"],a:0},
+    {q:"___ this your cap? — Yes, it is.",o:["Is","Are","Am"],a:0},
+    {q:"Are these your socks? — No, they ___.",o:["aren't","isn't","not"],a:0},
+    {q:"Is that your dress? — Yes, it ___.",o:["is","are","isn't"],a:0},
+    {q:"___ those your glasses?",o:["Are","Is","Am"],a:0}
+  ],
+  story:{title:"Where Are Zib's Clothes?",pic:"👽🧣❓",
+    text:["It's a cold day. Zib wants to go out, but he can't find his clothes!","'Is this your scarf, Zib?' asks Leo. 'No, it isn't. My scarf is green.'","'Are these your gloves?' asks Kai. 'Yes, they are! Thank you!'","'And that?' says Sofi. 'That's my hat! Now I'm ready!' Zib has green gloves, a green scarf and a very big hat."],
+    qs:[{q:"What colour is Zib's scarf?",o:["Green","Red","Blue"],a:0},
+        {q:"Who finds Zib's gloves?",o:["Leo","Kai","Sofi"],a:1},
+        {q:"What is the weather like?",o:["It's hot","It's cold","It's rainy"],a:1}]},
+  odd:[
+    {items:["👕","👖","👗","🍌"],a:3,why:"A banana is food. The others are clothes."},
+    {items:["🧤","🧣","🧥","🩳"],a:3,why:"Shorts are for hot days. The others are for cold days."},
+    {items:["👟","👞","🧦","🎩"],a:3,why:"A hat goes on your head. The others go on your feet."},
+    {items:["🧢","👓","🧣","🐟"],a:3,why:"A fish is an animal. The others are things you wear."}
+  ]},
+{ n:3, name:"House Hunt", emoji:"🏠", topic:"The home · there is / there are", test:"Reading",
+  vocab:[
+    {w:"house",e:"🏠",es:"casa"},{w:"bed",e:"🛏️",es:"cama"},{w:"sofa",e:"🛋️",es:"sofá"},{w:"bath",e:"🛁",es:"tina"},
+    {w:"shower",e:"🚿",es:"ducha"},{w:"toilet",e:"🚽",es:"WC"},{w:"TV",e:"📺",es:"tele"},{w:"door",e:"🚪",es:"puerta"},
+    {w:"garden",e:"🌷",es:"jardín"},{w:"key",e:"🔑",es:"llave"},{w:"picture",e:"🖼️",es:"cuadro"},{w:"radio",e:"📻",es:"radio"}
+  ],
+  sentences:["There is a sofa in the living room.","There are two beds in my bedroom.","Is there a garden?","There isn't a TV in the kitchen.","Are there any pictures?","My house is small and pretty."],
+  tip:{title:"There is / There are",rows:["There is a sofa. (1)","There are two beds. (2 or more)","Is there a garden? — Yes, there is. / No, there isn't.","Are there any chairs? — Yes, there are. / No, there aren't."],es:"There is = hay (una cosa). There are = hay (varias cosas)."},
+  grammar:[
+    {q:"There ___ a bed in my room.",o:["is","are","am"],a:0},
+    {q:"There ___ three chairs in the kitchen.",o:["are","is","be"],a:0},
+    {q:"___ there a shower in the bathroom?",o:["Is","Are","Am"],a:0},
+    {q:"___ there two doors?",o:["Are","Is","Do"],a:0},
+    {q:"There ___ a TV in my bedroom. 😢",o:["isn't","aren't","not"],a:0},
+    {q:"There ___ any pictures on the wall.",o:["aren't","isn't","not"],a:0},
+    {q:"Is there a key? — Yes, there ___.",o:["is","are","isn't"],a:0},
+    {q:"Are there two bathrooms? — No, there ___.",o:["aren't","isn't","is"],a:0}
+  ],
+  story:{title:"Tronny's Dream House",pic:"🤖🏠✨",
+    text:["Tronny the robot wants a new house. Leo and Sofi help.","'In my dream house there is a big garden with flowers,' says Tronny. 'There are ten doors and a very long sofa.'","'Is there a bath?' asks Sofi. 'No, there isn't. Robots don't like water!'","'Is there a TV?' asks Leo. 'Yes, there are three TVs — one for every room!'"],
+    qs:[{q:"What is in the garden?",o:["Flowers","A TV","A bath"],a:0},
+        {q:"How many doors are there?",o:["Three","Ten","Two"],a:1},
+        {q:"Why isn't there a bath?",o:["Robots don't like water","It's too big","Sofi doesn't like it"],a:0}]},
+  odd:[
+    {items:["🛏️","🛋️","🪑","🐘"],a:3,why:"An elephant is an animal. The others are furniture."},
+    {items:["🛁","🚿","🚽","📺"],a:3,why:"A TV isn't in the bathroom. The others are."},
+    {items:["🔑","🚪","🏠","🍦"],a:3,why:"Ice cream is food. The others are about a house."},
+    {items:["📻","📺","🖼️","🌷"],a:3,why:"Flowers are in the garden. The others are inside the house."}
+  ]},
+{ n:4, name:"That's Me!", emoji:"🙋", topic:"Feelings & personality · present simple", test:"Writing",
+  vocab:[
+    {w:"happy",e:"😀",es:"feliz"},{w:"sad",e:"😢",es:"triste"},{w:"angry",e:"😠",es:"enojado"},{w:"tired",e:"😴",es:"cansado"},
+    {w:"scared",e:"😱",es:"asustado"},{w:"funny",e:"😂",es:"chistoso"},{w:"shy",e:"😳",es:"tímido"},{w:"strong",e:"💪",es:"fuerte"},
+    {w:"clever",e:"🧠",es:"inteligente"},{w:"kind",e:"🤗",es:"cariñoso"},{w:"tall",e:"🦒",es:"alto"},{w:"small",e:"🐭",es:"pequeño"}
+  ],
+  sentences:["I like pizza and ice cream.","Kai is tall and clever.","I don't like spiders.","Do you like dogs?","Leo is funny and kind.","My sister plays the piano."],
+  tip:{title:"Present simple",rows:["I / You / We / They like pizza.","He / She / It likes pizza.","I don't like… · She doesn't like…","Do you like…? · Does he like…?"],es:"Con he, she, it el verbo lleva -s. Para negar usamos don't o doesn't."},
+  grammar:[
+    {q:"I ___ chocolate.",o:["like","likes","liking"],a:0},
+    {q:"She ___ in Sydney.",o:["lives","live","living"],a:0},
+    {q:"We ___ like rainy days.",o:["don't","doesn't","aren't"],a:0},
+    {q:"Leo ___ like tomatoes.",o:["doesn't","don't","isn't"],a:0},
+    {q:"___ you like cats? — Yes, I do.",o:["Do","Does","Are"],a:0},
+    {q:"___ Zib like music? — Yes, he does.",o:["Does","Do","Is"],a:0},
+    {q:"Kai is very ___. 🦒",o:["tall","small","sad"],a:0},
+    {q:"I'm ___. I want to sleep. 😴",o:["tired","funny","angry"],a:0}
+  ],
+  story:{title:"Zib's Diary",pic:"👽📔😀",
+    text:["Hi, I'm Zib! I'm small and green, and I'm very funny.","I live on a spaceship with my friends. I like pizza and I love music, but I don't like rain.","Sofi is kind and clever. She likes animals. Leo is strong — he plays football every day.","Kai is tall and a little shy. Do I like my crew? Yes, I do! I'm very happy here."],
+    qs:[{q:"What doesn't Zib like?",o:["Rain","Pizza","Music"],a:0},
+        {q:"Who likes animals?",o:["Leo","Sofi","Kai"],a:1},
+        {q:"What is Kai like?",o:["Tall and a little shy","Small and green","Strong and funny"],a:0}]},
+  odd:[
+    {items:["😀","😂","🤗","😢"],a:3,why:"Sad is not a happy face."},
+    {items:["😠","😢","😱","🍕"],a:3,why:"Pizza is food. The others are feelings."},
+    {items:["😴","😳","😀","🚗"],a:3,why:"A car is not a feeling."},
+    {items:["💪","🧠","🤗","🧦"],a:3,why:"Socks are clothes. The others describe people."}
+  ]},
+{ n:5, name:"Super Skills", emoji:"🤸", topic:"Action verbs · can / can't", test:"Speaking",
+  vocab:[
+    {w:"swim",e:"🏊",es:"nadar"},{w:"run",e:"🏃",es:"correr"},{w:"dance",e:"💃",es:"bailar"},{w:"sing",e:"🎤",es:"cantar"},
+    {w:"paint",e:"🎨",es:"pintar"},{w:"cook",e:"🍳",es:"cocinar"},{w:"climb",e:"🧗",es:"escalar"},{w:"ride a bike",e:"🚴",es:"andar en bici"},
+    {w:"skate",e:"🛹",es:"andar en skate"},{w:"read",e:"📖",es:"leer"},{w:"write",e:"✍️",es:"escribir"},{w:"play the guitar",e:"🎸",es:"tocar guitarra"}
+  ],
+  sentences:["I can swim very fast.","Sofi can paint beautiful pictures.","Zib can't ride a bike.","Can you play the guitar?","Yes, I can.","Let's dance together!"],
+  tip:{title:"can / can't",rows:["I can swim. ✅","She can't cook. ❌","Can you dance? — Yes, I can. / No, I can't.","Let's play! · Why don't we paint?"],es:"Can = poder o saber hacer algo. Después de can el verbo no cambia: she can swim (no 'swims')."},
+  grammar:[
+    {q:"I ___ swim. I love the pool!",o:["can","can't","cans"],a:0},
+    {q:"Tronny ___ swim. Robots don't like water!",o:["can't","can","cans"],a:0},
+    {q:"___ you sing? — Yes, I can.",o:["Can","Do","Are"],a:0},
+    {q:"Can Leo cook? — No, he ___.",o:["can't","can","doesn't"],a:0},
+    {q:"She can ___ the guitar.",o:["play","plays","playing"],a:0},
+    {q:"Can they skate? — Yes, they ___.",o:["can","can't","do"],a:0},
+    {q:"___ play football! — Great idea!",o:["Let's","Can","Why"],a:0},
+    {q:"Why don't we ___ a cake?",o:["make","makes","making"],a:0}
+  ],
+  story:{title:"The Talent Show",pic:"🎤🌟🎸",
+    text:["Today there is a talent show on the spaceship!","Kai can sing and play the guitar. Leo can't sing, but he can do amazing football tricks.","Sofi can paint very fast. She paints a picture of Zib in one minute!","'What can you do, Zib?' asks Tronny. 'I can dance with six legs!' Everybody laughs and claps."],
+    qs:[{q:"What can Kai do?",o:["Sing and play the guitar","Paint very fast","Football tricks"],a:0},
+        {q:"Can Leo sing?",o:["Yes, he can","No, he can't","We don't know"],a:1},
+        {q:"How does Zib dance?",o:["With six legs","With Tronny","On a bike"],a:0}]},
+  odd:[
+    {items:["🏊","🏃","🚴","🍰"],a:3,why:"Cake is food. The others are actions."},
+    {items:["🎤","🎸","💃","📺"],a:3,why:"You watch TV. The others are about music."},
+    {items:["📖","✍️","🎨","🦁"],a:3,why:"A lion is an animal. The others are things you can do at school."},
+    {items:["🛹","🚴","🏃","🛏️"],a:3,why:"You sleep in a bed. The others are ways to move fast."}
+  ]},
+{ n:6, name:"Tick Tock Day", emoji:"⏰", topic:"Daily routines · he / she + -s · the time", test:"Listening",
+  vocab:[
+    {w:"get up",e:"⏰",es:"levantarse"},{w:"have breakfast",e:"🥣",es:"tomar desayuno"},{w:"go to school",e:"🏫",es:"ir al colegio"},{w:"have lunch",e:"🥪",es:"almorzar"},
+    {w:"do homework",e:"📝",es:"hacer tareas"},{w:"play games",e:"🎮",es:"jugar videojuegos"},{w:"watch TV",e:"📺",es:"ver tele"},{w:"have dinner",e:"🍝",es:"cenar"},
+    {w:"have a shower",e:"🚿",es:"ducharse"},{w:"go to bed",e:"🛏️",es:"acostarse"},{w:"walk the dog",e:"🐕",es:"pasear al perro"},{w:"read a book",e:"📖",es:"leer un libro"}
+  ],
+  spell:[
+    {w:"clock",e:"🕐",es:"reloj"},{w:"breakfast",e:"🥣",es:"desayuno"},{w:"school",e:"🏫",es:"colegio"},{w:"lunch",e:"🥪",es:"almuerzo"},
+    {w:"homework",e:"📝",es:"tarea"},{w:"dinner",e:"🍝",es:"cena"},{w:"shower",e:"🚿",es:"ducha"},{w:"morning",e:"🌅",es:"mañana"}
+  ],
+  sentences:["I get up at seven o'clock.","Leo always has breakfast at home.","Sofi usually walks the dog.","Kai never watches TV in the morning.","What time is it?","It's half past three."],
+  tip:{title:"Present simple · he / she / it",rows:["I get up → she gets up","I go → he goes · I do → she does","I have → he has","always 100% · usually · sometimes · never 0%"],es:"Con he, she, it agregamos -s o -es. Las palabras de frecuencia van antes del verbo: She always gets up early."},
+  grammar:[
+    {q:"She ___ up at seven.",o:["gets","get","getting"],a:0},
+    {q:"Leo ___ his homework after lunch.",o:["does","do","dos"],a:0},
+    {q:"My mum ___ to work by bus.",o:["goes","go","gos"],a:0},
+    {q:"Zib ___ has a shower. He hates water!",o:["never","always","usually"],a:0},
+    {q:"I ___ go to bed at nine. Every day!",o:["always","never","sometimes"],a:0},
+    {q:"It's seven ___. 🕖",o:["o'clock","half","past"],a:0},
+    {q:"It's half ___ four. 🕟",o:["past","to","o'clock"],a:0},
+    {q:"Kai ___ plays video games — only on Saturdays.",o:["sometimes","always","never"],a:0}
+  ],
+  story:{title:"A Day on the Spaceship",pic:"🚀⏰🌙",
+    text:["Every day on the spaceship, Tronny gets up at six o'clock. Robots don't sleep a lot!","Leo and Sofi get up at seven. They have breakfast and then they go to school — in the classroom next to the kitchen.","Kai always does her homework after lunch. Zib sometimes does his homework… and sometimes he plays games!","At eight o'clock they have dinner, and at half past nine everybody goes to bed. Good night, crew!"],
+    qs:[{q:"What time does Tronny get up?",o:["At six o'clock","At seven o'clock","At half past nine"],a:0},
+        {q:"When does Kai do her homework?",o:["Before breakfast","After lunch","At night"],a:1},
+        {q:"What time do they go to bed?",o:["At eight o'clock","At seven o'clock","At half past nine"],a:2}]},
+  odd:[
+    {items:["🥣","🥪","🍝","🛏️"],a:3,why:"A bed isn't food. The others are meals."},
+    {items:["🌅","🌙","⏰","🍌"],a:3,why:"A banana is food. The others are about time."},
+    {items:["📺","🎮","📖","🚿"],a:3,why:"You wash in the shower. The others are for fun."},
+    {items:["🏫","📝","✏️","🏖️"],a:3,why:"The beach is for holidays. The others are about school."}
+  ]},
+{ n:7, name:"Wild Friends", emoji:"🦁", topic:"Wild animals · does it…?", test:"Reading",
+  vocab:[
+    {w:"lion",e:"🦁",es:"león"},{w:"tiger",e:"🐯",es:"tigre"},{w:"elephant",e:"🐘",es:"elefante"},{w:"giraffe",e:"🦒",es:"jirafa"},
+    {w:"monkey",e:"🐒",es:"mono"},{w:"zebra",e:"🦓",es:"cebra"},{w:"crocodile",e:"🐊",es:"cocodrilo"},{w:"snake",e:"🐍",es:"serpiente"},
+    {w:"bear",e:"🐻",es:"oso"},{w:"kangaroo",e:"🦘",es:"canguro"},{w:"penguin",e:"🐧",es:"pingüino"},{w:"parrot",e:"🦜",es:"loro"}
+  ],
+  sentences:["The elephant eats grass and fruit.","A penguin lives in a cold place.","Does a snake have legs?","No, it doesn't.","The monkey climbs trees.","Two tickets for the zoo, please."],
+  tip:{title:"Present simple · questions",rows:["It eats meat. · It doesn't eat grass.","Does it live in Africa? — Yes, it does. / No, it doesn't.","Where does it live? · What does it eat?"],es:"Para preguntar con he, she, it usamos Does… y el verbo va sin -s: Does it eat…?"},
+  grammar:[
+    {q:"A giraffe ___ leaves.",o:["eats","eat","eating"],a:0},
+    {q:"A kangaroo ___ very high.",o:["jumps","jump","jumping"],a:0},
+    {q:"___ a lion eat meat? — Yes, it does.",o:["Does","Do","Is"],a:0},
+    {q:"Does a penguin fly? — No, it ___.",o:["doesn't","don't","isn't"],a:0},
+    {q:"A crocodile ___ in rivers.",o:["lives","live","living"],a:0},
+    {q:"Where ___ a bear live?",o:["does","do","is"],a:0},
+    {q:"What ___ monkeys eat? — Bananas!",o:["do","does","are"],a:0},
+    {q:"A zebra ___ black and white.",o:["is","are","has"],a:0}
+  ],
+  story:{title:"A Day at the Zoo",pic:"🦁🐒🎟️",
+    text:["On Saturday the crew visits the zoo. 'Five tickets, please,' says Leo.","First they see the monkeys. A little monkey takes Zib's banana! Everybody laughs.","'Does the giraffe eat bananas too?' asks Sofi. 'No, it doesn't. It eats leaves from tall trees,' says the zookeeper.","Kai's favourite animal is the kangaroo. 'It lives in Australia, like me! And it jumps very high.'"],
+    qs:[{q:"How many tickets does Leo buy?",o:["Three","Five","Ten"],a:1},
+        {q:"What does the giraffe eat?",o:["Bananas","Leaves","Meat"],a:1},
+        {q:"Why does Kai like the kangaroo?",o:["It lives in Australia, like her","It eats bananas","It is black and white"],a:0}]},
+  odd:[
+    {items:["🦁","🐯","🐻","🐶"],a:3,why:"A dog is a pet. The others are wild animals."},
+    {items:["🐧","🦜","🐦","🐍"],a:3,why:"A snake isn't a bird."},
+    {items:["🐊","🐍","🦎","🦒"],a:3,why:"A giraffe isn't a reptile. The others are reptiles."},
+    {items:["🐘","🦒","🦓","🐟"],a:3,why:"A fish lives in water. The others live on land."}
+  ]},
+{ n:8, name:"Let's Play!", emoji:"⚽", topic:"Sports · like / love + -ing", test:"Writing",
+  vocab:[
+    {w:"football",e:"⚽",es:"fútbol"},{w:"basketball",e:"🏀",es:"básquetbol"},{w:"tennis",e:"🎾",es:"tenis"},{w:"volleyball",e:"🏐",es:"vóleibol"},
+    {w:"baseball",e:"⚾",es:"béisbol"},{w:"swimming",e:"🏊",es:"natación"},{w:"cycling",e:"🚴",es:"ciclismo"},{w:"skiing",e:"⛷️",es:"esquí"},
+    {w:"running",e:"🏃",es:"correr"},{w:"skateboarding",e:"🛹",es:"skate"},{w:"table tennis",e:"🏓",es:"ping-pong"},{w:"ice skating",e:"⛸️",es:"patinaje sobre hielo"}
+  ],
+  sentences:["I love playing football.","Sofi likes swimming.","Kai doesn't like running.","What do you do at the weekend?","Where do you play tennis?","I go cycling with my dad."],
+  tip:{title:"like / love + -ing",rows:["I love playing football. ❤️","She likes swimming. 👍","He doesn't like running. 👎","What? Where? When? Who? — What do you do at the weekend?"],es:"Después de like, love o don't like, el verbo va con -ing: I like swimming."},
+  grammar:[
+    {q:"I love ___ basketball.",o:["playing","play","plays"],a:0},
+    {q:"She likes ___ in the sea.",o:["swimming","swim","swims"],a:0},
+    {q:"Leo doesn't like ___. It's cold!",o:["skiing","ski","skis"],a:0},
+    {q:"___ do you play football? — In the park.",o:["Where","When","Who"],a:0},
+    {q:"___ is your favourite sport? — Tennis!",o:["What","Who","Where"],a:0},
+    {q:"___ do you go swimming? — On Sundays.",o:["When","Where","What"],a:0},
+    {q:"___ is your coach? — Mr Díaz.",o:["Who","What","When"],a:0},
+    {q:"My friends ___ playing volleyball.",o:["love","loves","loving"],a:0}
+  ],
+  story:{title:"The Space Olympics",pic:"🏅🚀⚽",
+    text:["This weekend there are Space Olympics on the ship! Everybody chooses a sport.","Leo loves playing football, of course. Sofi likes swimming, so she goes to the pool.","Kai doesn't like running, but she loves playing table tennis. She's very fast!","And Zib? He loves skiing on the snow of planet Zoom. He wins a gold medal! 🥇"],
+    qs:[{q:"What does Sofi like?",o:["Swimming","Running","Skiing"],a:0},
+        {q:"Does Kai like running?",o:["Yes, she does","No, she doesn't","She loves it"],a:1},
+        {q:"What does Zib win?",o:["A gold medal","A football","A new ship"],a:0}]},
+  odd:[
+    {items:["⚽","🏀","🏐","🎸"],a:3,why:"A guitar is for music. The others are sports balls."},
+    {items:["⛷️","⛸️","🏂","🏊"],a:3,why:"You swim in water. The others are winter sports."},
+    {items:["🎾","🏓","🏸","🍩"],a:3,why:"A doughnut is food. The others are sports with rackets."},
+    {items:["🏃","🚴","🏊","📺"],a:3,why:"Watching TV isn't a sport!"}
+  ]}
+];
+
+const ACTS=[
+  {id:"flash",name:"Flashcards",icon:"🃏",bg:"var(--sky)",desc:"Flip, listen and learn words."},
+  {id:"memory",name:"Memory",icon:"🧠",bg:"var(--lav)",desc:"Find the pairs!"},
+  {id:"listen",name:"Listen & Pick",icon:"👂",bg:"var(--pink)",desc:"Hear a word, choose the picture."},
+  {id:"spell",name:"Spell It",icon:"🔤",bg:"var(--butter)",desc:"Put the letters in order."},
+  {id:"balloon",name:"Save the Balloons",icon:"🎈",bg:"var(--peach)",desc:"Guess the word letter by letter."},
+  {id:"builder",name:"Sentence Builder",icon:"🧱",bg:"var(--mint)",desc:"Build correct sentences."},
+  {id:"grammar",name:"Grammar Quiz",icon:"🧩",bg:"var(--butter)",desc:"Choose the right word."},
+  {id:"story",name:"Story Time",icon:"📖",bg:"var(--sky)",desc:"Read a mini story and answer."},
+  {id:"odd",name:"Odd One Out",icon:"🔍",bg:"var(--lav)",desc:"Which one is different?"}
+];
+
+/* Tronny's instructions: English on screen + Spanish (read aloud when a Spanish voice exists) */
+const INSTR={
+  flash:{en:"Tap a card to flip it and hear the word.",es:"Toca una tarjeta para darla vuelta y escuchar la palabra.",ex:"🐱 → cat"},
+  memory:{en:"Find the picture and its word.",es:"Encuentra el dibujo y su palabra. Toca dos tarjetas.",ex:"🐱 + cat = ✓"},
+  listen:{en:"Listen and tap the right picture.",es:"Escucha la palabra y toca el dibujo correcto.",ex:"🔊 “dog” → 🐶"},
+  spell:{en:"Put the letters in order.",es:"Toca las letras en orden para escribir la palabra.",ex:"🐱 → C · A · T"},
+  balloon:{en:"Guess the word letter by letter.",es:"Adivina la palabra letra por letra, antes de que exploten los globos.",ex:"_ A _ → CAT"},
+  builder:{en:"Tap the words in the right order.",es:"Toca las palabras en orden para armar la frase.",ex:"is · Leo · This → This is Leo."},
+  grammar:{en:"Choose the right word.",es:"Elige la palabra correcta para completar la frase.",ex:"She ___ my sister. → is"},
+  story:{en:"Read or listen to the story. Then answer.",es:"Lee o escucha el cuento y después responde las preguntas.",ex:"🔊 Read it to me"},
+  odd:{en:"Which one is different?",es:"¿Cuál es distinto? Toca el que no pertenece al grupo.",ex:"🐶 🐱 🐟 🍎 → 🍎"}
+};
+
+/* What to practise before each kind of class test */
+const SKILL={
+  Speaking:{es:"hablar",acts:["flash","builder"],tip:"Repite en voz alta cada palabra y cada frase."},
+  Listening:{es:"escuchar",acts:["listen","story"],tip:"Escucha el cuento con 🔊 antes de leerlo."},
+  Reading:{es:"leer",acts:["story","grammar"],tip:"Lee el cuento con calma y responde las preguntas."},
+  Writing:{es:"escribir",acts:["spell","balloon","builder"],tip:"Practica cómo se escriben las palabras y las frases."}
+};
+
+/* =========================================================
+   PLACEMENT TEST ("Mide tu inglés ahora")
+   One part per level (4 questions). 3 of 4 correct → next part.
+   The level is the first part the child does not pass.
+   ========================================================= */
+const TEST=[
+  [ /* Tiny Stars */
+    {type:"pic",prompt:"What is it?",show:"🐶",o:["cat","dog","fish"],a:1},
+    {type:"listen",prompt:"Listen and choose the picture.",say:"banana",o:["🍎","🍌","🍇"],a:1,big:true},
+    {type:"pic",prompt:"How many apples?",show:"🍎🍎🍎",o:["two","three","four"],a:1},
+    {type:"pic",prompt:"What colour is it?",show:"🔴",o:["blue","red","green"],a:1}
+  ],
+  [ /* Moon Walkers */
+    {type:"txt",prompt:"She ___ my sister.",o:["is","am","are"],a:0},
+    {type:"txt",prompt:"There ___ two beds in my room.",o:["is","are","am"],a:1},
+    {type:"listen",prompt:"Listen and choose.",say:"I can swim, but I can't dance.",o:["I can dance.","I can swim.","I can't swim."],a:1},
+    {type:"txt",prompt:"He ___ up at seven o'clock.",o:["get","gets","getting"],a:1}
+  ],
+  [ /* Rocket Riders */
+    {type:"txt",prompt:"Is there ___ milk in the fridge?",o:["any","a","many"],a:0},
+    {type:"txt",prompt:"Look! Leo ___ football now.",o:["plays","is playing","play"],a:1},
+    {type:"txt",prompt:"Yesterday we ___ basketball.",o:["played","play","playing"],a:0},
+    {type:"read",text:"Kai has got long brown hair and blue eyes. She is taller than Sofi, but Leo is the tallest in the family.",prompt:"Who is the tallest?",o:["Kai","Sofi","Leo"],a:2}
+  ],
+  [ /* Planet Explorers */
+    {type:"txt",prompt:"When I was five, I ___ play with dinosaurs.",o:["used to","use to","was"],a:0},
+    {type:"txt",prompt:"I was reading when the phone ___.",o:["rang","rings","was ring"],a:0},
+    {type:"txt",prompt:"Have you ever ___ a whale?",o:["saw","seen","see"],a:1},
+    {type:"txt",prompt:"If it rains, we ___ at home.",o:["will stay","stayed","stay will"],a:0}
+  ],
+  [ /* Comet Chasers */
+    {type:"txt",prompt:"I've ___ finished my homework — look!",o:["just","yet","ever"],a:0},
+    {type:"txt",prompt:"If I ___ a dragon, I would fly to school.",o:["had","have","will have"],a:0},
+    {type:"txt",prompt:"The pyramids ___ thousands of years ago.",o:["were built","built","are building"],a:0},
+    {type:"read",text:"Tom said: 'I'm tired.'",prompt:"Tom said that he ___ tired.",o:["was","is","be"],a:0}
+  ],
+  [ /* Galaxy Masters */
+    {type:"txt",prompt:"When we arrived at the cinema, the film ___.",o:["had already started","already starts","has already started"],a:0},
+    {type:"txt",prompt:"This time tomorrow, I ___ on the beach.",o:["will be lying","will lie","am lie"],a:0},
+    {type:"txt",prompt:"If she had studied, she ___ the exam.",o:["would have passed","would pass","will pass"],a:0},
+    {type:"txt",prompt:"The streets are wet. It ___ have rained last night.",o:["must","can't","should"],a:0}
+  ]
+];
+const RESULT_MSG={
+  tiny:"You are starting your English journey. Let's learn your first words together!",
+  moon:"You know your first words and sentences. Let's walk on the moon!",
+  rocket:"You can talk about your life, food and school. Blast off!",
+  planet:"You can tell stories about the past. Let's explore new planets!",
+  comet:"You understand longer texts and big ideas. Chase that comet!",
+  galaxy:"Wow! You can use complex English. You are a Galaxy Master!"
+};
+
+/* =========================================================
+   STORAGE (safe)
+   ========================================================= */
+function load(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v);}catch(e){return d;}}
+function save(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+let STARS=load("twk2_stars",0);
+let MYLEVEL=load("twk2_level",null);
+let KIDNAME=load("twk2_name","");
+let GOT=load("twk2_got",{});   /* items that already gave stars: stars are earned only the first time */
+let BEST=load("twk2_best",{});  /* best rating (1–3) per activity */
+
+const BADGES=[
+  {n:10,ic:"🌱",t:"First Steps",d:"Earn 10 stars"},
+  {n:50,ic:"🌟",t:"Rising Star",d:"Earn 50 stars"},
+  {n:150,ic:"🧙",t:"Word Wizard",d:"Earn 150 stars"},
+  {n:300,ic:"🦸",t:"English Hero",d:"Earn 300 stars"},
+  {n:500,ic:"🏆",t:"Tronwell Champion",d:"Earn 500 stars"}
+];
+
+/* =========================================================
+   HELPERS
+   ========================================================= */
+const $=id=>document.getElementById(id);
+function shuffle(a){return a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(p=>p[1]);}
+function mixOpts(o,a){const idx=shuffle(o.map((_,i)=>i));return {o:idx.map(i=>o[i]),a:idx.indexOf(a)};}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function gapHtml(q,fill){return esc(q).replace("___",'<span class="gap">'+(fill?esc(fill):"&nbsp;")+'</span>');}
+const COLS=["var(--sky)","var(--pink)","var(--mint)","var(--butter)","var(--lav)","var(--peach)"];
+
+/* ---- speech (English for the words, Spanish for Tronny's instructions) ---- */
+function canSpeak(){return typeof window!=="undefined"&&"speechSynthesis" in window;}
+function voiceFor(lang){
+  let vs=[];try{vs=speechSynthesis.getVoices()||[];}catch(e){}
+  if(lang==="es")return vs.find(v=>/^es[-_](CL|419|US|MX)/i.test(v.lang))||vs.find(v=>/^es/i.test(v.lang))||null;
+  return vs.find(v=>/^en[-_]US/i.test(v.lang)&&/Google|Samantha|Aria|Jenny|Natural/i.test(v.name))||vs.find(v=>/^en[-_](US|GB)/i.test(v.lang))||vs.find(v=>/^en/i.test(v.lang))||null;
+}
+function speak(t,lang){
+  if(!canSpeak())return false;
+  try{
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(t),v=voiceFor(lang||"en");
+    u.lang=lang==="es"?(v?v.lang:"es-ES"):"en-US";u.rate=lang==="es"?1:.85;
+    if(v)u.voice=v;
+    speechSynthesis.speak(u);return true;
+  }catch(e){return false;}
+}
+function speakWhenFree(t){let n=0;const tryIt=()=>{if(canSpeak()&&speechSynthesis.speaking&&n++<40)return setTimeout(tryIt,200);speak(t);};tryIt();}
+function stopSpeech(){if(canSpeak())try{speechSynthesis.cancel();}catch(e){}}
+if(canSpeak()){try{speechSynthesis.getVoices();speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices();}catch(e){}}
+function sayInstr(act){const I=INSTR[act];if(voiceFor("es"))speak(I.es,"es");else speak(I.en,"en");}
+const HEARD={};
+function autoInstr(act){if(!HEARD[act]){HEARD[act]=1;setTimeout(()=>sayInstr(act),300);}}
+
+/* ---- feedback ---- */
+let toastT=null;
+function toast(msg){const t=$("toast");t.textContent=msg;t.classList.add("show");clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove("show"),1600);}
+function burst(){
+  const icons=["⭐","✨","🌟","💫"];
+  for(let i=0;i<8;i++){
+    const s=document.createElement("div");s.className="burst";
+    s.textContent=icons[i%icons.length];
+    s.style.left=(window.innerWidth/2)+"px";s.style.top=(window.innerHeight/2)+"px";
+    s.style.setProperty("--dx",(Math.random()*300-150)+"px");
+    s.style.setProperty("--dy",(Math.random()*-260-40)+"px");
+    document.body.appendChild(s);setTimeout(()=>s.remove(),1000);
+  }
+}
+const PRAISE=["Great job!","Awesome!","Well done!","Super!","Fantastic!","You rock!","Excellent!"];
+function praise(){return PRAISE[Math.floor(Math.random()*PRAISE.length)];}
+function addStar(n){
+  const before=STARS;STARS+=n;save("twk2_stars",STARS);$("starCount").textContent=STARS;
+  burst();toast("⭐ +"+n+"  "+praise());
+  const nb=BADGES.find(b=>before<b.n&&STARS>=b.n);
+  if(nb)setTimeout(()=>toast(nb.ic+" New badge: "+nb.t+"!"),1700);
+}
+/* Stars only the first time an item is solved; later it's just praise */
+function award(k,n){
+  if(GOT[k]){burst();toast("✓ "+praise());return;}
+  GOT[k]=1;save("twk2_got",GOT);addStar(n);
+}
+function setNav(v){document.querySelectorAll("#nav button").forEach(b=>b.classList.toggle("on",b.dataset.v===v));}
+function imgTag(src,alt){return '<img src="'+src+'" alt="'+esc(alt)+'" loading="lazy" onerror="this.style.display=\'none\'">';}
+function scrollTop(){window.scrollTo({top:0,behavior:"smooth"});}
+
+/* ---- emoji pictures (Twemoji) ---- */
+let emoPending=false;
+function emojify(){if(window.twemoji){try{twemoji.parse(document.body,{folder:"svg",ext:".svg"});}catch(e){}}}
+new MutationObserver(()=>{if(emoPending)return;emoPending=true;requestAnimationFrame(()=>{emoPending=false;emojify();});})
+  .observe(document.body,{childList:true,subtree:true,characterData:true});
+window.addEventListener("load",emojify);
+
+/* =========================================================
+   ROUTING & STATE
+   ========================================================= */
+let CUR={view:"home",lv:null,mi:null,act:null};
+function L(id){return LEVELS.find(l=>l.id===id);}
+function M(){return L(CUR.lv).missions.find(m=>m.n===CUR.mi);}
+function key(act,item){return CUR.lv+"|"+CUR.mi+"|"+act+(item!==undefined?"|"+item:"");}
+function hasContent(m){return !!(m&&m.vocab);}
+function rating(score,total){const p=total?score/total:1;return p>=.9?3:p>=.6?2:1;}
+function setBest(act,r){const k=key(act);if(!BEST[k]||r>BEST[k]){BEST[k]=r;save("twk2_best",BEST);}}
+function missionStars(lv,n){return ACTS.reduce((s,a)=>s+(BEST[lv+"|"+n+"|"+a.id]||0),0);}
+function starsTxt(r){return r?"⭐".repeat(r)+"☆".repeat(3-r):"";}
+
+function go(v){
+  stopSpeech();
+  CUR={view:v,lv:null,mi:null,act:null};setNav(v);
+  if(v==="home"||v==="levels"){renderHome();if(v==="levels")setTimeout(()=>{const s=$("lvsec");if(s)s.scrollIntoView({behavior:"smooth"});},60);else scrollTop();return;}
+  if(v==="test")renderTestIntro();
+  else if(v==="stars")renderStars();
+  scrollTop();
+}
+function goLevel(id){stopSpeech();CUR={view:"level",lv:id,mi:null,act:null};setNav("levels");renderLevel();scrollTop();}
+function goMission(id,n){
+  const m=L(id).missions.find(x=>x.n===n);
+  if(!hasContent(m)){toast("🚧 Coming soon! · ¡Muy pronto!");return;}
+  stopSpeech();CUR={view:"mission",lv:id,mi:n,act:null};setNav("levels");renderMission();scrollTop();
+}
+function goAct(act){stopSpeech();CUR.view="act";CUR.act=act;renderAct(act);scrollTop();}
+function nextAct(act){const i=ACTS.findIndex(a=>a.id===act);if(i<ACTS.length-1)goAct(ACTS[i+1].id);else goMission(CUR.lv,CUR.mi);}
+
+/* =========================================================
+   HOME
+   ========================================================= */
+function renderHome(){
+  const my=MYLEVEL&&L(MYLEVEL);
+  const lvBadge=my?'<div class="mylevel" onclick="goLevel(\''+my.id+'\')">'+my.emoji+' '+(KIDNAME?esc(KIDNAME)+', your':'Your')+' level: '+my.name+' →</div>':"";
+  let h='<section class="hero">'+
+    '<div><h1>Hello, <span>space explorer!</span> 👋</h1>'+
+    '<p>Practise English with games and stories. Travel with the Tronwell crew, collect stars ⭐ and unlock badges 🏆!</p>'+
+    '<div class="cta"><button class="btn" onclick="go(\'test\')">🎯 Mide tu inglés ahora</button>'+
+    '<button class="btn alt" onclick="go(\'levels\')">Choose my level ↓</button></div>'+
+    lvBadge+'</div>'+
+    '<div style="position:relative"><div class="ph">'+imgTag(IMG.hero,"Kids learning")+'</div>'+
+    '<span class="float" style="top:-14px;left:-6px">⭐</span><span class="float" style="bottom:-10px;right:10px;animation-delay:.8s">🪐</span><span class="float" style="top:40%;right:-14px;animation-delay:1.4s">🚀</span></div>'+
+    '</section>';
+
+  h+='<section class="sec" id="lvsec"><h2>Pick your level</h2><p class="sub">Six stops on a space journey · from your very first words to real fluency.</p><div class="levels">';
+  LEVELS.forEach((Lv,i)=>{
+    const mine=MYLEVEL===Lv.id;
+    h+='<div class="lvcard '+(Lv.ready?'':'soon')+'" onclick="goLevel(\''+Lv.id+'\')" style="border-color:'+(mine?Lv.deep:"transparent")+'">'+
+      '<div class="top" style="background:'+Lv.sky+'">'+Lv.emoji+'<span class="step">Level '+(i+1)+'</span>'+(Lv.ready?'':'<span class="ribbon">🚧 Coming soon</span>')+'</div>'+
+      '<div class="bd"><h3>'+Lv.name+'</h3><div class="tags"><span class="tag" style="background:'+Lv.bg+';color:'+Lv.deep+'">'+Lv.cefr+'</span><span class="tag">'+Lv.missions.length+' missions</span>'+(mine?'<span class="tag" style="background:var(--butter)">⭐ My level</span>':'')+'</div>'+
+      '<p>'+Lv.desc+'</p></div></div>';
+  });
+  h+='</div></section>';
+
+  h+='<section class="sec"><h2>Meet the crew</h2><p class="sub">Tap a friend to hear them. 🔊</p><div class="crew">';
+  CREW.forEach((c,i)=>{h+='<div class="mate" onclick="speak(CREW['+i+'].say)"><div class="av">'+c.av+'</div><b>'+c.name+'</b><span>'+c.info+'</span></div>';});
+  h+='</div></section>';
+
+  h+='<section class="sec"><h2>What can you do here?</h2><p class="sub">'+ACTS.length+' activities in every mission.</p><div class="feat">';
+  ACTS.forEach(a=>{h+='<div class="ft" style="background:'+a.bg+'"><div class="ic">'+a.icon+'</div><b>'+a.name+'</b><span>'+a.desc+'</span></div>';});
+  h+='</div></section>';
+
+  h+='<section class="sec"><h2>My badges</h2><p class="sub">You have <b>'+STARS+' ⭐</b>. Keep playing to unlock them all!</p>'+badgesHtml()+'</section>';
+  $("app").innerHTML=h;
+}
+function badgesHtml(){
+  let h='<div class="badges">';
+  BADGES.forEach(b=>{h+='<div class="bdg '+(STARS>=b.n?'got':'')+'"><div class="ic">'+b.ic+'</div><div><b>'+b.t+'</b><small>'+(STARS>=b.n?'Unlocked!':b.d)+'</small></div></div>';});
+  return h+'</div>';
+}
+function renderStars(){
+  const next=BADGES.find(b=>STARS<b.n);
+  const pct=next?Math.round(STARS/next.n*100):100;
+  const my=MYLEVEL&&L(MYLEVEL);
+  let mine="";
+  if(my&&my.ready){
+    mine='<h3 class="baloo" style="font-size:24px;margin-top:22px">'+my.emoji+' My missions</h3><div class="missions" style="margin-top:10px">';
+    my.missions.forEach(m=>{mine+='<div class="mis" onclick="goMission(\''+my.id+'\','+m.n+')"><div class="ic" style="background:'+my.bg+'">'+m.emoji+'</div><div><small>Mission '+m.n+'</small><b>'+esc(m.name)+'</b><div class="prog">⭐ '+missionStars(my.id,m.n)+' / '+ACTS.length*3+'</div></div></div>';});
+    mine+='</div>';
+  }
+  $("app").innerHTML='<div class="stage"><div class="stage-h"><h2>⭐ My stars</h2><span class="count">'+STARS+' stars</span></div>'+
+    (next?'<p class="hint">Next badge: <b>'+next.ic+' '+next.t+'</b> at '+next.n+' stars.</p><div class="progress"><i style="width:'+pct+'%"></i></div>':'<p class="hint">You unlocked every badge! 🏆</p>')+
+    badgesHtml()+
+    (my?'<p class="hint" style="margin-top:18px">Your level: <b>'+my.emoji+' '+my.name+'</b> · <a href="#" onclick="goLevel(\''+my.id+'\');return false">go to my level</a></p>':'<p class="hint" style="margin-top:18px">You haven\'t measured your level yet. <a href="#" onclick="go(\'test\');return false">Take the test</a></p>')+
+    mine+'</div>';
+}
+
+/* =========================================================
+   LEVEL & MISSION
+   ========================================================= */
+function renderLevel(){
+  const Lv=L(CUR.lv),i=LEVELS.indexOf(Lv);
+  let h='<button class="back" onclick="go(\'levels\')">← All levels</button>'+
+    '<div class="zhead" style="background:'+Lv.bg+'"><div class="big">'+Lv.emoji+'</div><div><div class="kicker">Level '+(i+1)+' · '+Lv.cefr+'</div><h1>'+Lv.name+'</h1><p>'+Lv.desc+'</p></div></div>'+
+    (Lv.ready?'':'<div class="soonbox">🚧 This level is coming soon! Here are its missions. · ¡Este nivel viene muy pronto! Estas son sus misiones.</div>')+
+    '<div class="missions">';
+  Lv.missions.forEach(m=>{
+    const ok=hasContent(m);
+    h+='<div class="mis '+(ok?'':'soon')+'" onclick="goMission(\''+Lv.id+'\','+m.n+')"><div class="ic" style="background:'+Lv.bg+'">'+m.emoji+'</div>'+
+      '<div><small>Mission '+m.n+'</small><b>'+esc(m.name)+'</b><span>'+esc(m.topic)+'</span>'+
+      '<div class="prog">'+(ok?'⭐ '+missionStars(Lv.id,m.n)+' / '+ACTS.length*3:'🚧 Coming soon')+'</div></div></div>';
+  });
+  $("app").innerHTML=h+'</div>';
+}
+function renderMission(){
+  const Lv=L(CUR.lv),m=M(),S=m.test&&SKILL[m.test];
+  let h='<button class="back" onclick="goLevel(\''+Lv.id+'\')">← '+Lv.emoji+' '+Lv.name+'</button>'+
+    '<div class="zhead" style="background:'+Lv.bg+'"><div class="big">'+m.emoji+'</div><div><div class="kicker">'+Lv.name+' · Mission '+m.n+'</div><h1>'+esc(m.name)+'</h1>'+
+    '<div class="zinfo"><span>📚 '+esc(m.topic)+'</span><span>⭐ '+missionStars(Lv.id,m.n)+' / '+ACTS.length*3+'</span></div></div></div>';
+  if(S){
+    const names=S.acts.map(id=>ACTS.find(a=>a.id===id).name).join(", ");
+    h+='<div class="testtip">📝 <b>Prueba de esta misión en clases: '+m.test+'</b> ('+S.es+'). '+S.tip+' Te recomendamos: <b>'+names+'</b>.</div>';
+  }
+  h+='<div class="acts">';
+  ACTS.forEach(a=>{
+    const r=BEST[key(a.id)]||0,rec=S&&S.acts.includes(a.id);
+    h+='<div class="act '+(rec?'rec':'')+'" onclick="goAct(\''+a.id+'\')">'+(rec?'<span class="rtag">📝 Test prep</span>':'')+(r?'<span class="rate">'+starsTxt(r)+'</span>':'')+
+      '<div class="ic" style="background:'+a.bg+'">'+a.icon+'</div><b>'+a.name+'</b><span>'+a.desc+'</span></div>';
+  });
+  $("app").innerHTML=h+'</div>';
+}
+
+/* =========================================================
+   ACTIVITY SHELL
+   ========================================================= */
+function bubble(act){
+  const I=INSTR[act];
+  return '<div class="tronny"><div class="tr-ava">🤖</div><div class="tr-bub"><b>'+esc(I.en)+'</b><span>'+esc(I.es)+'</span><small>Example: '+esc(I.ex)+'</small></div>'+
+    '<button class="tr-say" onclick="sayInstr(\''+act+'\')" title="Escuchar instrucciones" aria-label="Escuchar instrucciones">🔊</button></div>';
+}
+function shell(act,inner,count){
+  const Lv=L(CUR.lv),m=M(),A=ACTS.find(a=>a.id===act);
+  return '<button class="back" onclick="goMission(\''+Lv.id+'\','+m.n+')">← '+m.emoji+' Mission '+m.n+' · '+esc(m.name)+'</button>'+
+    '<div class="stage"><div class="stage-h"><h2>'+A.icon+' '+A.name+'</h2>'+(count?'<span class="count" id="cnt">'+count+'</span>':'')+'</div>'+bubble(act)+'<div id="stage">'+inner+'</div></div>';
+}
+function doneBox(act,score,total,r,msg){
+  setBest(act,r);
+  const face=r===3?"🏆":r===2?"🎉":"💪";
+  const i=ACTS.findIndex(a=>a.id===act),next=ACTS[i+1];
+  return '<div class="done-box"><div class="big">'+face+'</div><h2>'+(msg||("You got "+score+" / "+total+"!"))+'</h2>'+
+    '<div class="rating">'+starsTxt(r)+'</div>'+
+    '<p class="hint">'+(r===3?"Perfect! You are amazing!":r===2?"Great work! Keep practising.":"Good try! Play again to get better.")+'</p>'+
+    '<div class="row"><button class="btn alt" onclick="goAct(\''+act+'\')">🔄 Play again</button>'+
+    (next?'<button class="btn" onclick="goAct(\''+next.id+'\')">'+next.icon+' '+next.name+' →</button>':'<button class="btn" onclick="goMission(CUR.lv,CUR.mi)">🏁 Mission menu</button>')+'</div></div>';
+}
+function renderAct(act){
+  ({flash:actFlash,memory:actMemory,listen:actListen,spell:actSpell,balloon:actBalloon,builder:actBuilder,grammar:actGrammar,story:actStory,odd:actOdd})[act]();
+  autoInstr(act);
+}
+function spellPool(){const m=M();return m.spell||m.vocab.filter(v=>/^[a-z]+$/i.test(v.w));}
+
+/* ---------- 1. FLASHCARDS ---------- */
+let FL=null;
+function actFlash(){
+  const V=M().vocab;FL={seen:new Set(),n:V.length,done:false};
+  let h='<div class="fgrid">';
+  V.forEach((v,i)=>{
+    h+='<div class="fc" onclick="flipCard(this,'+i+')"><div class="in"><div class="f" style="background:'+COLS[i%6]+'">'+v.e+'</div><div class="b" style="background:#fff;border:3px solid #efe6d8">'+esc(v.w)+(v.es?'<small>'+esc(v.es)+'</small>':'')+'</div></div></div>';
+  });
+  h+='</div><div class="fb" id="ffb"></div>';
+  $("app").innerHTML=shell("flash",h,"0 / "+V.length);
+}
+function flipCard(el,i){
+  el.classList.toggle("flip");
+  if(!el.classList.contains("flip"))return;
+  speak(M().vocab[i].w);FL.seen.add(i);$("cnt").textContent=FL.seen.size+" / "+FL.n;
+  if(FL.seen.size===FL.n&&!FL.done){
+    FL.done=true;setBest("flash",3);award(key("flash","all"),2);
+    $("ffb").className="fb ok";$("ffb").innerHTML='🎉 You saw all the cards!<br><button class="btn sm" style="margin-top:10px" onclick="nextAct(\'flash\')">Next activity →</button>';
+  }
+}
+
+/* ---------- 2. MEMORY ---------- */
+let MEM=null;
+function actMemory(){
+  const V=M().vocab,np=Math.min(6,V.length),pairs=shuffle(V).slice(0,np);
+  const cards=shuffle(pairs.flatMap((p,i)=>[{k:i,t:p.e,emo:true,w:p.w},{k:i,t:p.w,emo:false,w:p.w}]));
+  MEM={cards:cards,open:[],done:0,moves:0,lock:false,np:np};
+  let h='<div class="mgrid">';
+  cards.forEach((c,i)=>{h+='<div class="mc '+(c.emo?'emoji':'')+'" id="mc'+i+'" onclick="memClick('+i+')">'+esc(c.t)+'</div>';});
+  h+='</div><div class="fb" id="mfb">Moves: 0</div>';
+  $("app").innerHTML=shell("memory",h,"0 / "+np+" pairs");
+}
+function memClick(i){
+  const G=MEM,el=$("mc"+i);
+  if(G.lock||el.classList.contains("open")||el.classList.contains("done"))return;
+  el.classList.add("open");G.open.push(i);
+  if(!G.cards[i].emo)speak(G.cards[i].t);
+  if(G.open.length===2){
+    G.moves++;$("mfb").textContent="Moves: "+G.moves;
+    const [a,b]=G.open;
+    if(G.cards[a].k===G.cards[b].k){
+      $("mc"+a).classList.add("done");$("mc"+b).classList.add("done");G.open=[];G.done++;
+      $("cnt").textContent=G.done+" / "+G.np+" pairs";award(key("memory",G.cards[a].w),1);
+      if(G.done===G.np){const r=G.moves<=G.np+3?3:G.moves<=G.np+7?2:1;setTimeout(()=>{$("stage").innerHTML=doneBox("memory",G.np,G.np,r,"All pairs found in "+G.moves+" moves!");},700);}
+    }else{
+      G.lock=true;
+      setTimeout(()=>{$("mc"+a).classList.remove("open");$("mc"+b).classList.remove("open");G.open=[];G.lock=false;},850);
+    }
+  }
+}
+
+/* ---------- 3. LISTEN & PICK ---------- */
+let LIS=null;
+function actListen(){
+  const V=M().vocab;
+  LIS={rounds:shuffle(V).slice(0,Math.min(8,V.length)),i:0,score:0};
+  $("app").innerHTML=shell("listen","","1 / "+LIS.rounds.length);
+  listenRound();
+}
+function listenRound(){
+  const G=LIS,V=M().vocab;
+  if(G.i>=G.rounds.length){$("stage").innerHTML=doneBox("listen",G.score,G.rounds.length,rating(G.score,G.rounds.length));return;}
+  const t=G.rounds[G.i];
+  G.opts=shuffle([t].concat(shuffle(V.filter(v=>v.w!==t.w)).slice(0,2)));
+  $("cnt").textContent=(G.i+1)+" / "+G.rounds.length;
+  $("stage").innerHTML='<div class="progress"><i style="width:'+(G.i/G.rounds.length*100)+'%"></i></div>'+
+    '<div class="center"><button class="speaker" onclick="speak(LIS.rounds[LIS.i].w)" aria-label="Listen">🔊</button>'+
+    '<div class="hint">Tap the speaker and choose the picture.</div>'+(canSpeak()?'':'<div class="fallback">'+esc(t.w)+'</div>')+'</div>'+
+    '<div class="opts">'+G.opts.map((o,j)=>'<button class="op" onclick="listenAns(this,'+j+')">'+o.e+'</button>').join('')+'</div><div class="fb" id="lfb"></div>';
+  setTimeout(()=>speakWhenFree(t.w),350);
+}
+function listenAns(btn,j){
+  const G=LIS,t=G.rounds[G.i];
+  document.querySelectorAll("#stage .op").forEach(b=>b.classList.add("dis"));
+  const good=G.opts[j].w===t.w;
+  if(good){btn.classList.add("ok");G.score++;award(key("listen",t.w),1);$("lfb").className="fb ok";$("lfb").textContent="✓ "+t.w;}
+  else{btn.classList.add("no");$("lfb").className="fb no";$("lfb").textContent="✗ It was: "+t.w+" "+t.e;
+    document.querySelectorAll("#stage .op").forEach((b,k)=>{if(G.opts[k].w===t.w)b.classList.add("ok");});}
+  G.i++;setTimeout(listenRound,good?1000:1700);
+}
+
+/* ---------- 4. SPELL IT ---------- */
+let SP=null;
+function actSpell(){
+  const P=spellPool();
+  SP={rounds:shuffle(P).slice(0,Math.min(6,P.length)),i:0,score:0};
+  $("app").innerHTML=shell("spell","","1 / "+SP.rounds.length);
+  spellRound();
+}
+function spellRound(){
+  const S=SP;
+  if(S.i>=S.rounds.length){$("stage").innerHTML=doneBox("spell",S.score,S.rounds.length,rating(S.score,S.rounds.length));return;}
+  const t=S.rounds[S.i];
+  S.word=t.w.toLowerCase();S.letters=shuffle(S.word.split(""));
+  if(S.letters.join("")===S.word&&S.word.length>1)S.letters.reverse();
+  S.slots=[];S.miss=false;
+  $("cnt").textContent=(S.i+1)+" / "+S.rounds.length;
+  $("stage").innerHTML='<div class="progress"><i style="width:'+(S.i/S.rounds.length*100)+'%"></i></div>'+
+    '<div class="bigemoji">'+t.e+'</div>'+(t.es?'<p class="clue">Pista: '+esc(t.es)+'</p>':'')+
+    '<div class="slots" id="slots"></div><div class="tiles" id="tiles"></div>'+
+    '<div class="row"><button class="btn sm alt" onclick="speak(SP.word)">🔊 Hear it</button><button class="btn sm alt" onclick="spellClear()">↺ Clear</button><button class="btn sm alt" onclick="spellSkip()">Skip →</button></div><div class="fb" id="sfb"></div>';
+  spellDraw();
+}
+function spellDraw(){
+  const S=SP;
+  let sh="";for(let k=0;k<S.word.length;k++){const f=S.slots[k];sh+='<div class="slot '+(f!==undefined?'full':'')+'" onclick="spellBack('+k+')">'+(f!==undefined?S.letters[f]:'')+'</div>';}
+  $("slots").innerHTML=sh;
+  $("tiles").innerHTML=S.letters.map((l,k)=>'<button class="tile '+(S.slots.includes(k)?'used':'')+'" onclick="spellPick('+k+')">'+l+'</button>').join('');
+}
+function spellPick(k){
+  const S=SP;if(S.slots.includes(k)||S.slots.length>=S.word.length)return;
+  S.slots.push(k);spellDraw();
+  if(S.slots.length===S.word.length){
+    const built=S.slots.map(x=>S.letters[x]).join("");
+    if(built===S.word){if(!S.miss)S.score++;award(key("spell",S.word),1);$("sfb").className="fb ok";$("sfb").textContent="✓ "+S.word.toUpperCase()+"!";speak(S.word);S.i++;setTimeout(spellRound,1200);}
+    else{S.miss=true;$("sfb").className="fb no";$("sfb").textContent="✗ Try again!";setTimeout(()=>{S.slots=[];spellDraw();$("sfb").textContent="";},900);}
+  }
+}
+function spellBack(k){const S=SP;if(k<S.slots.length){S.slots=S.slots.slice(0,k);spellDraw();}}
+function spellClear(){SP.slots=[];spellDraw();$("sfb").textContent="";}
+function spellSkip(){const S=SP;$("sfb").className="fb no";$("sfb").textContent="The word was: "+S.word.toUpperCase();S.i++;setTimeout(spellRound,1400);}
+
+/* ---------- 5. SAVE THE BALLOONS ---------- */
+let BL=null;
+function actBalloon(){
+  const P=spellPool();
+  BL={pool:shuffle(P),i:0,won:0,n:Math.min(5,P.length)};
+  $("app").innerHTML=shell("balloon","","0 won");
+  balloonRound();
+}
+function balloonRound(){
+  const B=BL;
+  if(B.i>=B.n){$("stage").innerHTML=doneBox("balloon",B.won,B.n,rating(B.won,B.n),"You saved "+B.won+" of "+B.n+" balloon sets!");return;}
+  const t=B.pool[B.i];
+  B.word=t.w.toLowerCase();B.guess=[];B.lives=6;B.over=false;
+  $("stage").innerHTML='<p class="hint center">Guess the word before all the balloons pop! Clue: <span style="font-size:30px">'+t.e+'</span>'+(t.es?' · '+esc(t.es):'')+'</p>'+
+    '<div class="balloons" id="bal"></div><div class="masked" id="mask"></div><div class="kb" id="kb"></div><div class="fb" id="bfb"></div>';
+  let kb="";"abcdefghijklmnopqrstuvwxyz".split("").forEach(c=>{kb+='<button class="key" id="k_'+c+'" onclick="balloonKey(\''+c+'\')">'+c.toUpperCase()+'</button>';});
+  $("kb").innerHTML=kb;balloonDraw();
+}
+function balloonDraw(){
+  const B=BL;
+  $("bal").textContent="🎈".repeat(B.lives)+"💥".repeat(6-B.lives);
+  $("mask").innerHTML=B.word.split("").map(c=>'<span>'+(/[a-z]/.test(c)?(B.guess.includes(c)||B.over?c:""):c)+'</span>').join("");
+}
+function balloonKey(c){
+  const B=BL;if(!B||B.over||B.guess.includes(c)||!$("k_"+c))return;
+  B.guess.push(c);
+  const k=$("k_"+c);
+  if(B.word.includes(c)){k.classList.add("ok");}else{k.classList.add("no");B.lives--;}
+  const win=B.word.split("").every(ch=>!/[a-z]/.test(ch)||B.guess.includes(ch));
+  if(win){B.over=true;B.won++;award(key("balloon",B.word),2);$("cnt").textContent=B.won+" won";$("bfb").className="fb ok";$("bfb").innerHTML="✓ "+B.word.toUpperCase()+'!<br><button class="btn sm mint" style="margin-top:10px" onclick="BL.i++;balloonRound()">Next word →</button>';speak(B.word);}
+  else if(B.lives<=0){B.over=true;$("bfb").className="fb no";$("bfb").innerHTML="Oh no! The word was "+B.word.toUpperCase()+'<br><button class="btn sm peach" style="margin-top:10px" onclick="BL.i++;balloonRound()">Next word →</button>';}
+  balloonDraw();
+}
+document.addEventListener("keydown",e=>{if(CUR.act==="balloon"&&CUR.view==="act"&&/^[a-z]$/i.test(e.key)&&!e.ctrlKey&&!e.metaKey)balloonKey(e.key.toLowerCase());});
+
+/* ---------- 6. SENTENCE BUILDER ---------- */
+let BD=null;
+function actBuilder(){
+  BD={items:shuffle(M().sentences.map(s=>{const a=s.replace(/[.?!]+$/,"");return {s:s,answer:a,words:a.split(" ")};})),i:0,score:0};
+  $("app").innerHTML=shell("builder","","1 / "+BD.items.length);
+  builderRound();
+}
+function builderRound(){
+  const D=BD;
+  if(D.i>=D.items.length){$("stage").innerHTML=doneBox("builder",D.score,D.items.length,rating(D.score,D.items.length));return;}
+  const it=D.items[D.i];
+  D.pool=shuffle(it.words.map((w,k)=>({w:w,k:k})));D.line=[];D.tries=0;
+  if(D.pool.map(x=>x.w).join(" ")===it.answer&&D.pool.length>1)D.pool.reverse();
+  $("cnt").textContent=(D.i+1)+" / "+D.items.length;
+  $("stage").innerHTML='<div class="progress"><i style="width:'+(D.i/D.items.length*100)+'%"></i></div>'+
+    '<div class="line" id="bline"></div><div class="pool" id="bpool"></div>'+
+    '<div class="row"><button class="btn sm alt" onclick="builderReset()">↺ Clear</button><button class="btn sm" onclick="builderCheck()">Check ✓</button></div><div class="fb" id="bdfb"></div>';
+  builderDraw();
+}
+function builderDraw(){
+  const D=BD;
+  $("bline").innerHTML=D.line.map((x,j)=>'<button class="chip" onclick="builderOut('+j+')">'+esc(x.w)+'</button>').join("");
+  $("bpool").innerHTML=D.pool.map((x,j)=>'<button class="chip" onclick="builderIn('+j+')">'+esc(x.w)+'</button>').join("");
+}
+function builderIn(j){const D=BD;D.line.push(D.pool.splice(j,1)[0]);builderDraw();}
+function builderOut(j){const D=BD;D.pool.push(D.line.splice(j,1)[0]);builderDraw();}
+function builderReset(){const D=BD;D.pool=D.pool.concat(D.line);D.line=[];builderDraw();$("bdfb").textContent="";}
+function builderCheck(){
+  const D=BD,it=D.items[D.i];
+  if(D.pool.length){$("bdfb").className="fb no";$("bdfb").textContent="Use all the words!";return;}
+  const s=D.line.map(x=>x.w).join(" ");
+  if(s===it.answer){if(D.tries===0)D.score++;award(key("builder",it.s),1);$("bdfb").className="fb ok";$("bdfb").textContent="✓ "+it.s;speak(it.s);D.i++;setTimeout(builderRound,1500);}
+  else{D.tries++;$("bdfb").className="fb no";
+    if(D.tries>=2){$("bdfb").textContent="Answer: "+it.s;speak(it.s);D.i++;setTimeout(builderRound,2600);}
+    else $("bdfb").textContent="✗ Not quite. Try again!";}
+}
+
+/* ---------- 7. GRAMMAR QUIZ ---------- */
+let GQ=null;
+function tipHtml(t,open){
+  return '<details class="gtip"'+(open?' open':'')+'><summary>💡 Grammar tip: '+esc(t.title)+'</summary><ul>'+t.rows.map(r=>'<li>'+esc(r)+'</li>').join("")+'</ul><p>'+esc(t.es)+'</p></details>';
+}
+function actGrammar(){
+  const m=M();
+  GQ={items:shuffle(m.grammar.map((g,i)=>Object.assign({i:i},g))),i:0,score:0};
+  $("app").innerHTML=shell("grammar","","1 / "+GQ.items.length);
+  gramRound();
+}
+function gramRound(){
+  const G=GQ,m=M();
+  if(G.i>=G.items.length){$("stage").innerHTML=doneBox("grammar",G.score,G.items.length,rating(G.score,G.items.length));return;}
+  const it=G.items[G.i];G.cur=mixOpts(it.o,it.a);
+  $("cnt").textContent=(G.i+1)+" / "+G.items.length;
+  $("stage").innerHTML=tipHtml(m.tip,G.i===0)+'<div class="progress"><i style="width:'+(G.i/G.items.length*100)+'%"></i></div>'+
+    '<p class="gq" id="gq">'+gapHtml(it.q)+'</p>'+
+    '<div class="opts text" style="max-width:440px">'+G.cur.o.map((o,j)=>'<button class="op" onclick="gramAns(this,'+j+')">'+esc(o)+'</button>').join("")+'</div><div class="fb" id="gfb"></div>';
+}
+function gramAns(btn,j){
+  const G=GQ,it=G.items[G.i],good=j===G.cur.a,right=it.o[it.a];
+  document.querySelectorAll("#stage .op").forEach((b,k)=>{b.classList.add("dis");if(k===G.cur.a)b.classList.add("ok");});
+  $("gq").innerHTML=gapHtml(it.q,right);
+  speak(it.q.replace("___",right).replace(/\s*[(—].*$/,""));
+  if(good){G.score++;award(key("grammar",it.i),1);$("gfb").className="fb ok";$("gfb").textContent="✓ "+praise();G.i++;setTimeout(gramRound,1400);}
+  else{btn.classList.add("no");$("gfb").className="fb no";$("gfb").innerHTML='✗ The answer is “'+esc(right)+'”.<br><button class="btn sm" style="margin-top:10px" onclick="GQ.i++;gramRound()">Next →</button>';}
+}
+
+/* ---------- 8. STORY TIME ---------- */
+let STY=null;
+function actStory(){
+  const S=M().story;
+  STY={answered:0,score:0,qs:S.qs.map(q=>Object.assign({},q,mixOpts(q.o,q.a)))};
+  let h='<div class="story"><div class="pic">'+S.pic+'</div>'+
+    '<div><h2 class="baloo" style="font-size:30px;margin-bottom:8px">'+esc(S.title)+'</h2><div class="txt">'+S.text.map(p=>'<p style="margin-bottom:8px">'+esc(p)+'</p>').join("")+'</div>'+
+    '<div class="row" style="justify-content:flex-start"><button class="btn sm peach" onclick="speak(M().story.text.join(\' \'))">🔊 Read it to me</button><button class="btn sm alt" onclick="stopSpeech()">⏹ Stop</button></div></div></div>';
+  STY.qs.forEach((q,i)=>{
+    h+='<div class="q"><b>'+(i+1)+'. '+esc(q.q)+'</b><div class="opts text" style="margin:0">'+q.o.map((o,j)=>'<button class="op" id="sq'+i+'_'+j+'" onclick="storyAns('+i+','+j+')">'+esc(o)+'</button>').join("")+'</div></div>';
+  });
+  h+='<div class="fb" id="stfb"></div>';
+  $("app").innerHTML=shell("story",h,"0 / "+STY.qs.length);
+}
+function storyAns(i,j){
+  const q=STY.qs[i];
+  if($("sq"+i+"_0").classList.contains("dis"))return;
+  q.o.forEach((_,k)=>{const b=$("sq"+i+"_"+k);b.classList.add("dis");if(k===q.a)b.classList.add("ok");});
+  if(j===q.a){STY.score++;award(key("story",i),1);}else $("sq"+i+"_"+j).classList.add("no");
+  STY.answered++;$("cnt").textContent=STY.score+" / "+STY.qs.length;
+  if(STY.answered===STY.qs.length){
+    const n=STY.qs.length,r=rating(STY.score,n);setBest("story",r);
+    $("stfb").className="fb "+(STY.score===n?"ok":"no");
+    $("stfb").innerHTML=(STY.score===n?"🏆 Perfect reading!":"You got "+STY.score+" / "+n+". Read again and try!")+'<br><div class="row"><button class="btn sm alt" onclick="goAct(\'story\')">🔄 Try again</button><button class="btn sm" onclick="nextAct(\'story\')">Next activity →</button></div>';
+  }
+}
+
+/* ---------- 9. ODD ONE OUT ---------- */
+let OD=null;
+function actOdd(){
+  OD={items:shuffle(M().odd.map((o,i)=>Object.assign({i:i},o))),i:0,score:0};
+  $("app").innerHTML=shell("odd","","1 / "+OD.items.length);
+  oddRound();
+}
+function oddRound(){
+  const O=OD;
+  if(O.i>=O.items.length){$("stage").innerHTML=doneBox("odd",O.score,O.items.length,rating(O.score,O.items.length));return;}
+  const it=O.items[O.i];O.cur=mixOpts(it.items,it.a);
+  $("cnt").textContent=(O.i+1)+" / "+O.items.length;
+  $("stage").innerHTML='<div class="progress"><i style="width:'+(O.i/O.items.length*100)+'%"></i></div>'+
+    '<p class="tq">Which one is different? 🤔</p><div class="opts four">'+O.cur.o.map((e,j)=>'<button class="op" onclick="oddAns(this,'+j+')">'+e+'</button>').join("")+'</div><div class="fb" id="ofb"></div>';
+}
+function oddAns(btn,j){
+  const O=OD,it=O.items[O.i],good=j===O.cur.a;
+  document.querySelectorAll("#stage .op").forEach((b,k)=>{b.classList.add("dis");if(k===O.cur.a)b.classList.add("ok");});
+  if(good){O.score++;award(key("odd",it.i),1);$("ofb").className="fb ok";}else{btn.classList.add("no");$("ofb").className="fb no";}
+  $("ofb").innerHTML=(good?"✓ ":"✗ ")+esc(it.why)+'<br><button class="btn sm" style="margin-top:10px" onclick="OD.i++;oddRound()">Next →</button>';
+}
+
+/* =========================================================
+   PLACEMENT TEST
+   ========================================================= */
+let TS=null;
+function renderTestIntro(){
+  const my=MYLEVEL&&L(MYLEVEL);
+  const prev=my?'<div class="mylevel" onclick="goLevel(\''+my.id+'\')">Last result: '+my.emoji+' '+my.name+'</div>':"";
+  $("app").innerHTML='<div class="stage"><div class="test-hero"><div>'+
+    '<h1 class="baloo" style="font-size:44px">🎯 Mide tu inglés ahora</h1>'+
+    '<p style="font-size:17px;color:var(--soft-ink);margin:8px 0">Answer some fun questions and discover your level. The test gets harder step by step and stops when it finds your level. No stress — there are no bad results here, only a starting point! 😊</p>'+
+    '<div class="steps">'+LEVELS.map(l=>'<div>'+l.emoji+' '+l.name+'</div>').join("")+'</div>'+
+    '<p class="hint">Tip: use headphones for the listening questions 🎧</p>'+
+    '<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:8px"><input class="inp" id="kname" placeholder="Your first name (optional)" value="'+esc(KIDNAME)+'"><button class="btn" onclick="startTest()">Start the test →</button></div>'+prev+
+    '</div><div class="ph">'+imgTag(IMG.test,"Kids taking a test")+'</div></div></div>';
+}
+function startTest(){
+  const n=($("kname").value||"").trim().slice(0,30);KIDNAME=n;save("twk2_name",n);
+  TS={b:0,q:0,scores:TEST.map(()=>0),played:TEST.map(()=>false)};
+  testQuestion();
+}
+function testQuestion(){
+  const T=TS,Q=TEST[T.b][T.q],Lv=LEVELS[T.b];
+  T.played[T.b]=true;T.cur=mixOpts(Q.o,Q.a);
+  let body="";
+  if(Q.type==="pic")body='<div class="tshow">'+Q.show+'</div><p class="tq">'+esc(Q.prompt)+'</p>';
+  else if(Q.type==="listen")body='<p class="tq">'+esc(Q.prompt)+'</p><div class="center"><button class="speaker" onclick="speak(TEST[TS.b][TS.q].say)" aria-label="Listen">🔊</button>'+(canSpeak()?'':'<div class="fallback">'+esc(Q.say)+'</div>')+'</div>';
+  else if(Q.type==="read")body='<div class="reading">📖 '+esc(Q.text)+'</div><p class="tq" style="font-size:24px;margin-top:14px">'+gapHtml(Q.prompt)+'</p>';
+  else body='<p class="tq">'+gapHtml(Q.prompt)+'</p>';
+  const n=TEST[T.b].length;
+  $("app").innerHTML='<div class="stage">'+
+    '<span class="blocktag" style="background:'+Lv.bg+';color:'+Lv.deep+'">Part '+(T.b+1)+' of '+TEST.length+' · '+Lv.emoji+' '+Lv.name+'</span>'+
+    '<div class="stage-h" style="margin-bottom:6px"><h2>Question '+(T.q+1)+'</h2><span class="count">'+(T.q+1)+' / '+n+'</span></div>'+
+    '<div class="progress"><i style="width:'+(T.q/n*100)+'%"></i></div>'+body+
+    '<div class="'+(Q.big?"opts":"opts text")+'">'+T.cur.o.map((o,j)=>'<button class="op" onclick="testAns(this,'+j+')">'+esc(o)+'</button>').join("")+'</div></div>';
+  if(Q.type==="listen")setTimeout(()=>speak(Q.say),400);
+}
+function testAns(btn,j){
+  const T=TS;
+  document.querySelectorAll(".stage .op").forEach(b=>b.classList.add("dis"));
+  btn.style.borderColor="var(--lav-d)";btn.style.background="var(--lav)";
+  if(j===T.cur.a)T.scores[T.b]++;
+  setTimeout(()=>{
+    T.q++;
+    if(T.q<TEST[T.b].length)return testQuestion();
+    const pass=T.scores[T.b]>=3;
+    if(!pass||T.b===TEST.length-1)return testResult(T.b);
+    T.b++;T.q=0;testBreak();
+  },450);
+}
+function testBreak(){
+  const Lv=LEVELS[TS.b],prev=LEVELS[TS.b-1];
+  $("app").innerHTML='<div class="stage center"><div style="font-size:80px">🎉</div><h2 class="baloo" style="font-size:38px">Great job'+(KIDNAME?', '+esc(KIDNAME):'')+'!</h2>'+
+    '<p class="hint" style="font-size:16px">You passed '+prev.emoji+' '+prev.name+'. Ready for a new challenge?</p>'+
+    '<p style="margin:10px 0 18px"><span class="blocktag" style="background:'+Lv.bg+';color:'+Lv.deep+';font-size:15px">Next: Part '+(TS.b+1)+' · '+Lv.emoji+' '+Lv.name+'</span></p>'+
+    '<div class="row"><button class="btn" onclick="testQuestion()">Continue →</button><button class="btn alt" onclick="testResult(TS.b)">Finish here</button></div></div>';
+}
+function testResult(idx){
+  const T=TS,Lv=LEVELS[idx];
+  MYLEVEL=Lv.id;save("twk2_level",Lv.id);
+  const bars=TEST.map((_,k)=>{const P=LEVELS[k];return '<div><span>'+P.emoji+' '+P.name+'</span><b>'+(T.played[k]?T.scores[k]+' / '+TEST[k].length:'—')+'</b><small class="hint">'+(T.played[k]?("⭐".repeat(T.scores[k])||"·"):"not needed")+'</small></div>';}).join("");
+  const soon=Lv.ready?'':'<p style="max-width:520px;margin:12px auto 0;font-weight:700">🚧 This level is coming soon! Meanwhile, practise in 🌙 Moon Walkers. · ¡Tu nivel viene muy pronto! Mientras tanto, practica en Moon Walkers.</p>';
+  $("app").innerHTML='<div class="result" style="background:'+Lv.bg+'"><div class="big">'+Lv.emoji+'</div>'+
+    '<p style="font-weight:800;color:'+Lv.deep+'">'+(KIDNAME?esc(KIDNAME)+', your':'Your')+' level is</p><h1>'+Lv.name+'</h1>'+
+    '<p style="font-weight:800">'+Lv.cefr+'</p><p style="max-width:520px;margin:10px auto 0">'+RESULT_MSG[Lv.id]+'</p>'+soon+
+    '<div class="bars">'+bars+'</div>'+
+    '<div class="row"><button class="btn" onclick="goLevel(\''+Lv.id+'\')">Go to '+Lv.name+' →</button>'+(Lv.ready?'':'<button class="btn mint" onclick="goLevel(\'moon\')">🌙 Moon Walkers</button>')+'<button class="btn alt" onclick="go(\'test\')">🔄 Take it again</button></div>'+
+    '<p class="hint" style="margin-top:14px">This is a practice result. Your teacher will confirm your level in class.</p></div>';
+  award("test|done",3);
+}
+
+/* =========================================================
+   INIT
+   ========================================================= */
+$("starCount").textContent=STARS;
+/* Direct links for homework: ?level=moon  or  ?level=moon&mission=3 */
+(()=>{
+  const q=new URLSearchParams(location.search),lv=q.get("level"),mi=parseInt(q.get("mission"),10);
+  if(lv&&L(lv)){
+    if(!isNaN(mi)&&hasContent(L(lv).missions.find(m=>m.n===mi)))goMission(lv,mi);else goLevel(lv);
+  }else go("home");
+})();
+</script>
+</body>
+</html>
