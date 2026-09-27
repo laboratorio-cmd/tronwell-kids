@@ -72,15 +72,14 @@ main{max-width:1180px;margin:0 auto;padding:26px 20px 60px}
 .levels{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .lvcard{background:var(--card);border-radius:var(--r);overflow:hidden;cursor:pointer;box-shadow:0 8px 22px rgba(120,100,60,.08);transition:.2s;border:3px solid transparent;position:relative}
 .lvcard:hover{transform:translateY(-6px) rotate(-.5deg)}
-.lvcard .top{height:130px;position:relative;display:flex;align-items:center;justify-content:center;font-size:70px;overflow:hidden}
-.lvcard .top::before{content:"✦  ·  ✧  ·  ✦";position:absolute;top:10px;left:14px;font-size:14px;color:rgba(255,255,255,.9);letter-spacing:3px}
-.lvcard .step{position:absolute;bottom:10px;left:14px;background:rgba(255,255,255,.85);border-radius:10px;padding:2px 10px;font-size:12px;font-weight:800}
+.lvcard .top{height:140px;position:relative;overflow:hidden}
+.lvcard .step{position:absolute;bottom:10px;left:14px;z-index:1;background:rgba(255,255,255,.88);border-radius:10px;padding:2px 10px;font-size:12px;font-weight:800}
 .lvcard .bd{padding:16px 20px 20px}
 .lvcard h3{font-size:28px}
 .lvcard .tags{display:flex;gap:6px;margin:6px 0 10px;flex-wrap:wrap}
 .tag{font-size:12px;font-weight:800;padding:3px 10px;border-radius:10px;background:#f6efe4}
 .lvcard p{color:var(--soft-ink);font-size:14px}
-.ribbon{position:absolute;top:12px;right:12px;background:#fff;color:#8a6a00;font-weight:800;font-size:12px;padding:4px 10px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.ribbon{position:absolute;top:12px;left:12px;z-index:1;background:#fff;color:#8a6a00;font-weight:800;font-size:12px;padding:4px 10px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
 .lvcard.soon .top{filter:saturate(.55)}
 
 /* CREW */
@@ -106,14 +105,27 @@ main{max-width:1180px;margin:0 auto;padding:26px 20px 60px}
 .bdg b{font-family:'Baloo 2';font-size:18px;display:block}
 .bdg small{color:var(--soft-ink)}
 
-/* ── LEVEL / MISSION HEAD ── */
-.zhead{border-radius:30px;padding:28px 30px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
-.zhead .big{font-size:64px}
-.zhead h1{font-size:44px}
-.zhead p{color:var(--soft-ink);font-weight:600}
-.zhead .kicker{font-weight:800;font-size:13px;letter-spacing:1px;text-transform:uppercase;opacity:.75}
+/* ── BANNERS (level & mission) with space scenes ── */
+.scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+.scene .tw{animation:tw 2.6s ease-in-out infinite}
+.scene .tw2{animation:tw 3.4s ease-in-out .8s infinite}
+@keyframes tw{50%{opacity:.15}}
+.banner{position:relative;border-radius:30px;overflow:hidden;min-height:220px;display:flex;align-items:center;padding:30px 34px;color:#fff;box-shadow:0 10px 30px rgba(60,40,120,.18)}
+.banner .txt{position:relative;z-index:1;max-width:58%}
+.banner.dark .txt{text-shadow:0 2px 12px rgba(0,0,0,.35)}
+.banner.light{color:var(--ink)}
+.banner .kicker{font-weight:800;font-size:13px;letter-spacing:1.2px;text-transform:uppercase;opacity:.92}
+.banner h1{font-size:48px;margin:2px 0 4px}
+.banner p{font-weight:700;font-size:16px;opacity:.92}
 .zinfo{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-.zinfo span{background:rgba(255,255,255,.75);border-radius:12px;padding:5px 12px;font-size:13px;font-weight:700}
+.zinfo span{background:rgba(255,255,255,.88);color:var(--ink);text-shadow:none;border-radius:12px;padding:5px 12px;font-size:13px;font-weight:700}
+.orbit{position:absolute;right:56px;top:50%;margin-top:-85px;width:170px;height:170px;z-index:1}
+.orbit .core{position:absolute;inset:22px;border-radius:50%;background:rgba(255,255,255,.93);display:flex;align-items:center;justify-content:center;font-size:64px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.orbit .sat{position:absolute;width:54px;height:54px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 6px 16px rgba(0,0,0,.22);animation:bob 3s ease-in-out infinite}
+.orbit .s1{top:-6px;left:-10px}
+.orbit .s2{top:30px;right:-26px;animation-delay:.8s}
+.orbit .s3{bottom:-8px;left:22px;animation-delay:1.6s}
+.rscene{position:relative;height:150px;border-radius:22px;overflow:hidden;margin:0 0 16px}
 .soonbox{margin-top:18px;background:#fff;border:3px dashed #f1e6d6;border-radius:20px;padding:14px 18px;font-weight:700}
 .testtip{margin-top:16px;background:#fff;border:3px dashed #f1e6d6;border-radius:18px;padding:12px 16px;font-size:14px}
 .testtip b{color:var(--peach-d)}
@@ -280,13 +292,22 @@ footer b{color:var(--blue)}
   .opts.four{grid-template-columns:repeat(2,1fr)}
   nav{margin-left:0}
 }
+@media(max-width:700px){
+  /* text on the sky colour, illustration as a strip at the bottom */
+  .banner{flex-direction:column;align-items:flex-start;padding:22px 22px 24px;min-height:0}
+  .banner .txt{max-width:100%}
+  .banner h1{font-size:36px}
+  .banner .scene{top:auto;height:170px}
+  .banner.level{padding-bottom:180px}
+  .orbit{position:relative;right:auto;top:auto;margin:22px auto 4px;width:150px;height:150px}
+  .orbit .core{font-size:54px}
+}
 @media(max-width:560px){
   .levels,.missions{grid-template-columns:1fr}
   .crew{grid-template-columns:repeat(2,1fr)}
   .mgrid{grid-template-columns:repeat(3,1fr)}
   .bars{grid-template-columns:1fr 1fr}
   .op{font-size:40px}
-  .zhead h1{font-size:34px}
   .stage{padding:18px}
 }
 </style>
@@ -340,7 +361,7 @@ const CREW=[
    Only Moon Walkers has content in this pilot; the other levels show their missions as "coming soon".
    ========================================================= */
 const LEVELS=[
-{ id:"tiny", name:"Tiny Stars", emoji:"✨", cefr:"A0", bg:"var(--butter)", deep:"var(--butter-d)", sky:"linear-gradient(135deg,#ffe98a,#ffc8a8)",
+{ id:"tiny", name:"Tiny Stars", emoji:"✨", cefr:"A0", bg:"var(--butter)", deep:"var(--butter-d)", sky:"#ffd86b",
   desc:"Your very first words: colours, numbers, animals and toys.",
   missions:[
     {n:0,name:"Hello, Star!",emoji:"👋",topic:"Greetings · my name"},
@@ -354,10 +375,10 @@ const LEVELS=[
     {n:8,name:"Back to School",emoji:"✏️",topic:"The classroom"},
     {n:9,name:"Sunny or Rainy?",emoji:"☀️",topic:"Weather & clothes"}
   ]},
-{ id:"moon", name:"Moon Walkers", emoji:"🌙", cefr:"A0 – A1", bg:"var(--lav)", deep:"var(--lav-d)", sky:"linear-gradient(135deg,#b9a8ff,#8fc3ff)", ready:true,
+{ id:"moon", name:"Moon Walkers", emoji:"🌙", cefr:"A0 – A1", bg:"var(--lav)", deep:"var(--lav-d)", sky:"#2a2275", ready:true,
   desc:"Family, clothes, home, feelings, routines, animals and sports.",
   missions:[] /* filled below */ },
-{ id:"rocket", name:"Rocket Riders", emoji:"🚀", cefr:"A1", bg:"var(--sky)", deep:"var(--sky-d)", sky:"linear-gradient(135deg,#8fd0ff,#a8f0dc)",
+{ id:"rocket", name:"Rocket Riders", emoji:"🚀", cefr:"A1", bg:"var(--sky)", deep:"var(--sky-d)", sky:"#1b4aa8",
   desc:"People, food, school, music, sports and travel.",
   missions:[
     {n:0,name:"Hi, Crew!",emoji:"👋",topic:"Greetings & introductions"},
@@ -371,7 +392,7 @@ const LEVELS=[
     {n:8,name:"Around the Globe",emoji:"🌍",topic:"Geography · have to / must"},
     {n:9,name:"Ready, Set, Travel!",emoji:"✈️",topic:"Transport · going to · directions"}
   ]},
-{ id:"planet", name:"Planet Explorers", emoji:"🪐", cefr:"A2", bg:"var(--mint)", deep:"var(--mint-d)", sky:"linear-gradient(135deg,#8ee6c4,#fff09a)",
+{ id:"planet", name:"Planet Explorers", emoji:"🪐", cefr:"A2", bg:"var(--mint)", deep:"var(--mint-d)", sky:"#0e4d5c",
   desc:"Culture, tech, nature, health and the future.",
   missions:[
     {n:0,name:"Meet the Gang",emoji:"👋",topic:"Introductions"},
@@ -385,7 +406,7 @@ const LEVELS=[
     {n:8,name:"Future Me",emoji:"🔮",topic:"Jobs · will · first conditional"},
     {n:9,name:"Nature Quest",emoji:"🏞️",topic:"Nature · present perfect"}
   ]},
-{ id:"comet", name:"Comet Chasers", emoji:"☄️", cefr:"B1", bg:"var(--peach)", deep:"var(--peach-d)", sky:"linear-gradient(135deg,#ffb58a,#ff8fb1)",
+{ id:"comet", name:"Comet Chasers", emoji:"☄️", cefr:"B1", bg:"var(--peach)", deep:"var(--peach-d)", sky:"#2b1560",
   desc:"Digital life, weather, films, travel and mysteries.",
   missions:[
     {n:0,name:"Back in Orbit",emoji:"👋",topic:"Welcome back"},
@@ -399,7 +420,7 @@ const LEVELS=[
     {n:8,name:"Case Closed",emoji:"🔎",topic:"Crime & law · the passive"},
     {n:9,name:"Schools of the World",emoji:"🏫",topic:"Education · reported speech"}
   ]},
-{ id:"galaxy", name:"Galaxy Masters", emoji:"🌌", cefr:"B1+ – B2", bg:"var(--pink)", deep:"var(--pink-d)", sky:"linear-gradient(135deg,#7b6cf0,#ff8fc0)",
+{ id:"galaxy", name:"Galaxy Masters", emoji:"🌌", cefr:"B1+ – B2", bg:"var(--pink)", deep:"var(--pink-d)", sky:"#120c3a",
   desc:"Big goals, the planet, space, art and the world.",
   missions:[
     {n:0,name:"New Season",emoji:"👋",topic:"Welcome back"},
@@ -864,6 +885,95 @@ new MutationObserver(()=>{if(emoPending)return;emoPending=true;requestAnimationF
 window.addEventListener("load",emojify);
 
 /* =========================================================
+   SPACE SCENES · one vector illustration per level (viewBox 1000×240,
+   main object on the right so it stays visible when the banner is narrow)
+   ========================================================= */
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function dots(seed,n,maxY){
+  const r=rng(seed);let s="";
+  for(let i=0;i<n;i++){
+    const x=r()*1000,y=r()*maxY,rad=.7+r()*1.9,op=.45+r()*.55;
+    s+='<circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="'+rad.toFixed(2)+'" fill="#fff" opacity="'+op.toFixed(2)+'"'+(i%4===0?' class="tw"':i%7===0?' class="tw2"':'')+'/>';
+  }
+  return s;
+}
+function starPts(cx,cy,R,r){const p=[];for(let i=0;i<10;i++){const a=Math.PI/5*i-Math.PI/2,d=i%2?r:R;p.push((cx+Math.cos(a)*d).toFixed(1)+","+(cy+Math.sin(a)*d).toFixed(1));}return p.join(" ");}
+function sky(id,stops){return '<linearGradient id="'+id+'" x1="0" y1="0" x2="0" y2="1">'+stops.map((c,i)=>'<stop offset="'+(i/(stops.length-1))+'" stop-color="'+c+'"/>').join("")+'</linearGradient>';}
+function cloudRow(y,rx,ry){let c="";[30,160,290,420,550,680,810,940].forEach((x,i)=>{c+='<ellipse cx="'+x+'" cy="'+(y-(i%2)*6)+'" rx="'+rx+'" ry="'+ry+'"/>';});return c;}
+const SCENES={
+  tiny:o=>'<defs>'+sky("skTiny",["#ffd86b","#ffb3a0"])+'</defs><rect width="1000" height="240" fill="url(#skTiny)"/>'+dots(11,55,190)+
+    '<polygon points="'+starPts(560,60,20,9)+'" fill="#fff6b0" class="tw2"/><polygon points="'+starPts(705,48,24,11)+'" fill="#fff6b0"/>'+
+    '<polygon points="'+starPts(945,52,17,7)+'" fill="#fff6b0" class="tw"/><polygon points="'+starPts(690,168,14,6)+'" fill="#fff"/>'+
+    (o?'<polygon points="'+starPts(825,108,72,33)+'" fill="#ffe14d" stroke="#f5a623" stroke-width="7" stroke-linejoin="round"/>'+
+       '<circle cx="810" cy="104" r="6" fill="#5a3d1a"/><circle cx="840" cy="104" r="6" fill="#5a3d1a"/>'+
+       '<path d="M808 121 Q825 136 842 121" stroke="#5a3d1a" stroke-width="5" fill="none" stroke-linecap="round"/>'+
+       '<circle cx="796" cy="119" r="7" fill="#ff8fa3" opacity=".7"/><circle cx="854" cy="119" r="7" fill="#ff8fa3" opacity=".7"/>':'')+
+    '<g fill="#fff" opacity=".92">'+cloudRow(228,95,30)+cloudRow(208,48,24)+'</g>',
+  moon:o=>'<defs>'+sky("skMoon",["#2a2275","#6c60d8"])+
+    '<radialGradient id="glMoon"><stop offset="0" stop-color="#fff4d6" stop-opacity=".55"/><stop offset="1" stop-color="#fff4d6" stop-opacity="0"/></radialGradient></defs>'+
+    '<rect width="1000" height="240" fill="url(#skMoon)"/>'+dots(22,85,190)+'<circle cx="560" cy="52" r="9" fill="#ffb3c7"/>'+
+    (o?'<circle cx="820" cy="98" r="110" fill="url(#glMoon)"/><circle cx="820" cy="98" r="62" fill="#fff4d6"/>'+
+       '<g fill="#efe1b6"><circle cx="798" cy="80" r="12"/><circle cx="842" cy="112" r="16"/><circle cx="851" cy="70" r="7"/><circle cx="804" cy="122" r="6"/></g>':'')+
+    '<path d="M0 200 Q250 172 500 196 T1000 188 V240 H0Z" fill="#a497ea"/><path d="M0 222 Q300 204 600 224 T1000 214 V240 H0Z" fill="#8a7de0"/>'+
+    '<g fill="#7466cf"><ellipse cx="520" cy="212" rx="6" ry="3"/><ellipse cx="545" cy="205" rx="6" ry="3"/><ellipse cx="570" cy="212" rx="6" ry="3"/><ellipse cx="595" cy="205" rx="6" ry="3"/></g>'+
+    '<line x1="640" y1="206" x2="640" y2="156" stroke="#f3f3f3" stroke-width="3"/><path d="M641 156 h30 l-7 9 l7 9 h-30z" fill="#ff6b8a"/>',
+  rocket:o=>'<defs>'+sky("skRocket",["#1b4aa8","#7cc8ff"])+'</defs><rect width="1000" height="240" fill="url(#skRocket)"/>'+dots(33,70,170)+
+    '<circle cx="560" cy="60" r="15" fill="#ffd166"/><ellipse cx="560" cy="60" rx="27" ry="6" fill="none" stroke="#fff2c2" stroke-width="3" transform="rotate(-20 560 60)"/>'+
+    (o?'<g fill="#fff"><circle cx="762" cy="196" r="18"/><circle cx="790" cy="206" r="14"/><circle cx="742" cy="210" r="20"/><circle cx="772" cy="178" r="10" opacity=".8"/></g>'+
+       '<g transform="translate(830 98) rotate(35)">'+
+         '<path d="M-12 45 Q0 98 12 45Z" fill="#ffb03a"/><path d="M-6 45 Q0 78 6 45Z" fill="#ffe66d"/>'+
+         '<path d="M-18 20 L-38 54 L-16 45Z" fill="#ff5a5f"/><path d="M18 20 L38 54 L16 45Z" fill="#ff5a5f"/>'+
+         '<path d="M0 -72 C24 -46 26 18 18 45 L-18 45 C-26 18 -24 -46 0 -72Z" fill="#fff" stroke="#d6e2f7" stroke-width="3"/>'+
+         '<path d="M0 -72 C12 -60 17 -48 20 -40 L-20 -40 C-17 -48 -12 -60 0 -72Z" fill="#ff5a5f"/>'+
+         '<circle cx="0" cy="-10" r="12" fill="#4fc3f7" stroke="#1b4aa8" stroke-width="4"/></g>':'')+
+    '<g fill="#fff" opacity=".95">'+cloudRow(232,90,28)+'</g>',
+  planet:o=>'<defs>'+sky("skPlanet",["#0e4d5c","#3fae8f"])+
+    '<radialGradient id="bdPlanet" cx=".35" cy=".35" r=".75"><stop offset="0" stop-color="#ffe08a"/><stop offset=".6" stop-color="#f39b45"/><stop offset="1" stop-color="#d9692f"/></radialGradient></defs>'+
+    '<rect width="1000" height="240" fill="url(#skPlanet)"/>'+dots(44,80,230)+
+    '<circle cx="560" cy="180" r="18" fill="#5ec8ff"/><circle cx="554" cy="174" r="6" fill="#c4ecff" opacity=".8"/>'+
+    '<circle cx="690" cy="48" r="12" fill="#d7ecff"/><circle cx="686" cy="45" r="3" fill="#b3cde6"/>'+
+    (o?'<g transform="rotate(-18 820 118)"><path d="M708 118 A112 25 0 0 1 932 118" stroke="#ffe9b0" stroke-width="9" fill="none"/>'+
+       '<circle cx="820" cy="118" r="62" fill="url(#bdPlanet)"/>'+
+       '<path d="M762 100 Q820 92 878 100" stroke="#e0703a" stroke-width="7" fill="none" opacity=".55" stroke-linecap="round"/>'+
+       '<path d="M760 132 Q820 140 880 132" stroke="#e0703a" stroke-width="7" fill="none" opacity=".45" stroke-linecap="round"/>'+
+       '<path d="M708 118 A112 25 0 0 0 932 118" stroke="#ffe9b0" stroke-width="9" fill="none"/></g>':''),
+  comet:o=>'<defs>'+sky("skComet",["#2b1560","#b84f7a","#ffa87a"])+
+    '<linearGradient id="tlComet" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>'+
+    '<linearGradient id="tlComet2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe3a3" stop-opacity=".9"/><stop offset="1" stop-color="#ffe3a3" stop-opacity="0"/></linearGradient></defs>'+
+    '<rect width="1000" height="240" fill="url(#skComet)"/>'+dots(55,75,170)+
+    (o?'<path d="M885 50 Q660 118 360 224 Q665 150 882 94Z" fill="url(#tlComet)"/><path d="M886 60 Q720 88 500 118 Q720 102 884 82Z" fill="url(#tlComet2)"/>'+
+       '<circle cx="890" cy="72" r="44" fill="#fff" opacity=".22"/><circle cx="890" cy="72" r="24" fill="#fff"/><circle cx="890" cy="72" r="14" fill="#fff7cf"/>':'')+
+    '<path d="M0 240 V198 L90 158 L160 192 L240 146 L330 198 L410 168 L500 210 L590 172 L680 204 L760 176 L860 212 L940 184 L1000 200 V240Z" fill="#241046" opacity=".78"/>',
+  galaxy:o=>{
+    /* two spiral arms (tilted and flattened), each as a soft glow + a bright line + stars along it */
+    const arm=off=>{const pts=[],c=Math.cos(-.31),s=Math.sin(-.31);
+      for(let i=0;i<=64;i++){const t=i/64*3.2*Math.PI,r=9*Math.exp(.26*t),x=r*Math.cos(t+off),y=r*Math.sin(t+off)*.42;pts.push([820+x*c-y*s,120+x*s+y*c]);}
+      return pts;};
+    let arms="";
+    [0,Math.PI].forEach(off=>{
+      const p=arm(off),d=p.map((q,i)=>(i?"L":"M")+q[0].toFixed(1)+" "+q[1].toFixed(1)).join("");
+      arms+='<path d="'+d+'" fill="none" stroke="#ffd6f5" stroke-width="18" stroke-opacity=".16" stroke-linecap="round"/>'+
+            '<path d="'+d+'" fill="none" stroke="#ffe4fa" stroke-width="4" stroke-opacity=".6" stroke-linecap="round"/>'+
+            p.filter((q,i)=>i%5===2).map((q,i)=>'<circle cx="'+(q[0]+(i%2?5:-4)).toFixed(1)+'" cy="'+(q[1]+(i%3-1)*4).toFixed(1)+'" r="'+(1.6+i%3*.6)+'" fill="#fff"'+(i%2?' class="tw"':'')+'/>').join("");
+    });
+    return '<defs>'+sky("skGalaxy",["#120c3a","#3b2a8a","#8a3ca8"])+
+      '<radialGradient id="crGalaxy"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#ffd1f0" stop-opacity=".7"/><stop offset="1" stop-color="#ffd1f0" stop-opacity="0"/></radialGradient>'+
+      '<filter id="blGalaxy" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="24"/></filter></defs>'+
+      '<rect width="1000" height="240" fill="url(#skGalaxy)"/>'+
+      '<ellipse cx="260" cy="80" rx="150" ry="52" fill="#ff8fc0" opacity=".35" filter="url(#blGalaxy)"/><ellipse cx="560" cy="190" rx="170" ry="48" fill="#6ec3ff" opacity=".3" filter="url(#blGalaxy)"/>'+
+      dots(66,120,240)+
+      (o?arms+'<ellipse cx="820" cy="120" rx="95" ry="40" fill="url(#crGalaxy)" transform="rotate(-18 820 120)"/><circle cx="820" cy="120" r="14" fill="#fff"/>':'');
+  }
+};
+function scene(id,withObj){return '<svg class="scene" viewBox="0 0 1000 240" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">'+SCENES[id](withObj!==false)+'</svg>';}
+function bannerCls(Lv){return Lv.id==="tiny"?"light":"dark";}
+/* Mission picture: the mission emoji with three of its words orbiting around it */
+function orbitHtml(m){
+  const es=[...new Set(m.vocab.map(v=>v.e))].filter(e=>e!==m.emoji),n=es.length;
+  return '<div class="orbit"><div class="core">'+m.emoji+'</div>'+[es[0],es[Math.floor(n/2)],es[n-1]].map((e,i)=>'<span class="sat s'+(i+1)+'">'+e+'</span>').join("")+'</div>';
+}
+
+/* =========================================================
    ROUTING & STATE
    ========================================================= */
 let CUR={view:"home",lv:null,mi:null,act:null};
@@ -913,7 +1023,7 @@ function renderHome(){
   LEVELS.forEach((Lv,i)=>{
     const mine=MYLEVEL===Lv.id;
     h+='<div class="lvcard '+(Lv.ready?'':'soon')+'" onclick="goLevel(\''+Lv.id+'\')" style="border-color:'+(mine?Lv.deep:"transparent")+'">'+
-      '<div class="top" style="background:'+Lv.sky+'">'+Lv.emoji+'<span class="step">Level '+(i+1)+'</span>'+(Lv.ready?'':'<span class="ribbon">🚧 Coming soon</span>')+'</div>'+
+      '<div class="top" style="background:'+Lv.sky+'">'+scene(Lv.id)+'<span class="step">'+Lv.emoji+' Level '+(i+1)+'</span>'+(Lv.ready?'':'<span class="ribbon">🚧 Coming soon</span>')+'</div>'+
       '<div class="bd"><h3>'+Lv.name+'</h3><div class="tags"><span class="tag" style="background:'+Lv.bg+';color:'+Lv.deep+'">'+Lv.cefr+'</span><span class="tag">'+Lv.missions.length+' missions</span>'+(mine?'<span class="tag" style="background:var(--butter)">⭐ My level</span>':'')+'</div>'+
       '<p>'+Lv.desc+'</p></div></div>';
   });
@@ -958,7 +1068,8 @@ function renderStars(){
 function renderLevel(){
   const Lv=L(CUR.lv),i=LEVELS.indexOf(Lv);
   let h='<button class="back" onclick="go(\'levels\')">← All levels</button>'+
-    '<div class="zhead" style="background:'+Lv.bg+'"><div class="big">'+Lv.emoji+'</div><div><div class="kicker">Level '+(i+1)+' · '+Lv.cefr+'</div><h1>'+Lv.name+'</h1><p>'+Lv.desc+'</p></div></div>'+
+    '<div class="banner level '+bannerCls(Lv)+'" style="background:'+Lv.sky+'">'+scene(Lv.id)+
+      '<div class="txt"><div class="kicker">'+Lv.emoji+' Level '+(i+1)+' · '+Lv.cefr+'</div><h1>'+Lv.name+'</h1><p>'+Lv.desc+'</p></div></div>'+
     (Lv.ready?'':'<div class="soonbox">🚧 This level is coming soon! Here are its missions. · ¡Este nivel viene muy pronto! Estas son sus misiones.</div>')+
     '<div class="missions">';
   Lv.missions.forEach(m=>{
@@ -972,8 +1083,9 @@ function renderLevel(){
 function renderMission(){
   const Lv=L(CUR.lv),m=M(),S=m.test&&SKILL[m.test];
   let h='<button class="back" onclick="goLevel(\''+Lv.id+'\')">← '+Lv.emoji+' '+Lv.name+'</button>'+
-    '<div class="zhead" style="background:'+Lv.bg+'"><div class="big">'+m.emoji+'</div><div><div class="kicker">'+Lv.name+' · Mission '+m.n+'</div><h1>'+esc(m.name)+'</h1>'+
-    '<div class="zinfo"><span>📚 '+esc(m.topic)+'</span><span>⭐ '+missionStars(Lv.id,m.n)+' / '+ACTS.length*3+'</span></div></div></div>';
+    '<div class="banner mission '+bannerCls(Lv)+'" style="background:'+Lv.sky+'">'+scene(Lv.id,false)+
+      '<div class="txt"><div class="kicker">'+Lv.emoji+' '+Lv.name+' · Mission '+m.n+'</div><h1>'+esc(m.name)+'</h1>'+
+      '<div class="zinfo"><span>📚 '+esc(m.topic)+'</span><span>⭐ '+missionStars(Lv.id,m.n)+' / '+ACTS.length*3+'</span></div></div>'+orbitHtml(m)+'</div>';
   if(S){
     const names=S.acts.map(id=>ACTS.find(a=>a.id===id).name).join(", ");
     h+='<div class="testtip">📝 <b>Prueba de esta misión en clases: '+m.test+'</b> ('+S.es+'). '+S.tip+' Te recomendamos: <b>'+names+'</b>.</div>';
@@ -1349,7 +1461,7 @@ function testResult(idx){
   MYLEVEL=Lv.id;save("twk2_level",Lv.id);
   const bars=TEST.map((_,k)=>{const P=LEVELS[k];return '<div><span>'+P.emoji+' '+P.name+'</span><b>'+(T.played[k]?T.scores[k]+' / '+TEST[k].length:'—')+'</b><small class="hint">'+(T.played[k]?("⭐".repeat(T.scores[k])||"·"):"not needed")+'</small></div>';}).join("");
   const soon=Lv.ready?'':'<p style="max-width:520px;margin:12px auto 0;font-weight:700">🚧 This level is coming soon! Meanwhile, practise in 🌙 Moon Walkers. · ¡Tu nivel viene muy pronto! Mientras tanto, practica en Moon Walkers.</p>';
-  $("app").innerHTML='<div class="result" style="background:'+Lv.bg+'"><div class="big">'+Lv.emoji+'</div>'+
+  $("app").innerHTML='<div class="result" style="background:'+Lv.bg+'"><div class="rscene" style="background:'+Lv.sky+'">'+scene(Lv.id)+'</div>'+
     '<p style="font-weight:800;color:'+Lv.deep+'">'+(KIDNAME?esc(KIDNAME)+', your':'Your')+' level is</p><h1>'+Lv.name+'</h1>'+
     '<p style="font-weight:800">'+Lv.cefr+'</p><p style="max-width:520px;margin:10px auto 0">'+RESULT_MSG[Lv.id]+'</p>'+soon+
     '<div class="bars">'+bars+'</div>'+
