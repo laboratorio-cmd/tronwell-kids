@@ -317,6 +317,35 @@ main{max-width:1180px;margin:0 auto;padding:26px 20px 60px}
 .asr-note.err{background:var(--pink);color:#8a2b4a}
 .mbar{height:6px;background:rgba(0,0,0,.08);border-radius:3px;overflow:hidden;margin-top:6px}
 .mbar i{display:block;height:100%;background:var(--orange);width:0;transition:width .3s}
+.sp-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:10px 0 4px}
+.sp-chips span{background:var(--peach);color:#8a4210;font-weight:800;font-size:18px;padding:8px 14px;border-radius:14px;box-shadow:0 3px 0 #f0bf9c}
+.sp-answer{font-family:'Baloo 2';font-size:24px;font-weight:700;color:var(--ok);margin-top:8px}
+.sp-tip{font-size:14px;color:var(--soft-ink);font-weight:700;margin-top:6px}
+.sp-opts{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:10px}
+.sp-opts span{background:#fff;border:3px solid #efe6d8;border-radius:12px;padding:5px 14px;font-weight:800;font-size:17px;color:var(--lav-d)}
+.sp-opts span.right{border-color:var(--ok);background:var(--mint);color:var(--ok)}
+.sp-opts span.said{border-color:var(--no);background:var(--pink);color:var(--no);text-decoration:line-through}
+.sp-sent .gap{display:inline-block;min-width:90px;border-bottom:4px solid var(--lav-d);color:var(--lav-d)}
+/* Speaking Station (level page) */
+.station{margin-top:20px;background:linear-gradient(135deg,#fff 0%,#fff1f7 60%,#efeaff 100%);border:3px solid #ffd6e5;border-radius:28px;padding:20px 22px;box-shadow:0 8px 22px rgba(120,100,60,.08)}
+.st-head{display:flex;gap:14px;align-items:center}
+.st-ic{width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,#ff8fb1,#ff6b8a);display:flex;align-items:center;justify-content:center;font-size:34px;flex-shrink:0;box-shadow:0 4px 0 #d9537f}
+.st-head h2{font-size:30px}
+.st-head p{color:var(--soft-ink);font-weight:600;font-size:14px}
+.st-pick{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:14px 0 12px}
+.st-pick span{font-weight:800;font-size:13px;color:var(--soft-ink);margin-right:4px}
+.pchip{background:#fff;border:2px solid #efe6d8;border-radius:12px;padding:4px 10px;font-weight:800;font-size:13px;color:var(--ink)}
+.pchip:hover{border-color:var(--lav-d)}
+.pchip.on{background:var(--lav-d);border-color:var(--lav-d);color:#fff}
+.stiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.stile{position:relative;border-radius:22px;padding:18px 16px;text-align:center;cursor:pointer;transition:.18s;box-shadow:0 4px 0 rgba(0,0,0,.06)}
+.stile:hover{transform:translateY(-4px)}
+.stile .ic{font-size:40px;line-height:1.2}
+.stile b{display:block;font-family:'Baloo 2';font-size:22px;line-height:1.1;margin-top:4px}
+.stile small{display:block;font-weight:800;color:var(--soft-ink);font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+.stile span{display:block;font-size:13px;margin-top:4px}
+.stile .rate{position:absolute;top:10px;right:12px;font-size:13px}
+@media(max-width:700px){.stiles{grid-template-columns:1fr}.st-head h2{font-size:25px}}
 .sp-gate{text-align:center;max-width:620px;margin:0 auto;padding:6px}
 .sp-gate .big{font-size:70px;line-height:1.2}
 .sp-gate h3{font-size:28px;margin:4px 0 8px}
@@ -3208,7 +3237,10 @@ const INSTR={
   grammar:{en:"Choose the right word.",es:"Elige la palabra correcta para completar la frase.",ex:"She ___ my sister. → is"},
   story:{en:"Read or listen to the story. Then answer.",es:"Lee o escucha el cuento y después responde las preguntas.",ex:"🔊 Read it to me"},
   odd:{en:"Which one is different?",es:"¿Cuál es distinto? Toca el que no pertenece al grupo.",ex:"🐶 🐱 🐟 🍎 → 🍎"},
-  speak:{en:"Listen to Tronny, tap the microphone and say it.",es:"Escucha a Tronny, toca el micrófono y dilo en voz alta.",ex:"🔊 “cat” → 🎤 “cat!”"}
+  speak:{en:"Listen to Tronny, tap the microphone and say it.",es:"Escucha a Tronny, toca el micrófono y dilo en voz alta.",ex:"🔊 “cat” → 🎤 “cat!”"},
+  say:{en:"Listen to Tronny, then say the whole sentence.",es:"Escucha a Tronny y luego di la frase completa en voz alta.",ex:"🔊 “I like pizza.” → 🎤 “I like pizza.”"},
+  order:{en:"Put the words in order in your head and say the sentence.",es:"Ordena las palabras mentalmente y di la frase completa.",ex:"pizza · like · I → 🎤 “I like pizza.”"},
+  complete:{en:"Choose the right word and say the whole sentence.",es:"Elige la palabra correcta y di la frase completa en voz alta.",ex:"She ___ my sister. → 🎤 “She is my sister.”"}
 };
 
 /* What to practise before each kind of class test */
@@ -3318,7 +3350,7 @@ function speak(t,lang,rate){
   }catch(e){return false;}
 }
 function speakWhenFree(t){let n=0;const tryIt=()=>{if(canSpeak()&&speechSynthesis.speaking&&n++<40)return setTimeout(tryIt,200);speak(t);};tryIt();}
-function stopSpeech(){spCancel();if(canSpeak())try{speechSynthesis.cancel();}catch(e){}}
+function stopSpeech(){spCancel();SPK=null;if(canSpeak())try{speechSynthesis.cancel();}catch(e){}}
 if(canSpeak()){try{speechSynthesis.getVoices();speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices();}catch(e){}}
 function sayInstr(act){const I=INSTR[act];if(voiceFor("es"))speak(I.es,"es");else speak(I.en,"en");}
 const HEARD={};
@@ -3549,7 +3581,7 @@ function renderLevel(){
   let h='<button class="back" onclick="go(\'levels\')">← All levels</button>'+
     '<div class="banner level '+bannerCls(Lv)+'" style="background:'+Lv.sky+'">'+scene(Lv.id)+
       '<div class="txt"><div class="kicker">'+Lv.emoji+' Level '+(i+1)+' · '+Lv.cefr+'</div><h1>'+Lv.name+'</h1><p>'+Lv.desc+'</p></div></div>'+
-    (Lv.ready?'':'<div class="soonbox">🚧 This level is coming soon! Here are its missions. · ¡Este nivel viene muy pronto! Estas son sus misiones.</div>')+
+    (Lv.ready?stationHtml(Lv):'<div class="soonbox">🚧 This level is coming soon! Here are its missions. · ¡Este nivel viene muy pronto! Estas son sus misiones.</div>')+
     '<div class="missions">';
   Lv.missions.forEach(m=>{
     const ok=hasContent(m);
@@ -3992,33 +4024,102 @@ async function decode16k(blob){
   return d;
 }
 
-/* ---- the activity ---- */
+/* ---- Speak Up! (in each mission) and the Speaking Station (in each level) share this engine ---- */
 let SPK=null,SREC=null;
 function actSpeak(){
   const m=M();
   const words=shuffle(m.vocab).slice(0,3).map(v=>({kind:"word",text:v.w,e:v.e,d:v.e?null:v.d}));
   const sents=shuffle(m.sentences).slice(0,3).map(s=>({kind:"sent",text:s}));
-  SPK={items:words.concat(sents),i:0,self:[],noMic:false,state:"idle",busy:false,err:null};
+  SPK={mode:"speak",items:words.concat(sents),i:0,self:[],noMic:false,state:"idle",busy:false,err:null};
   $("app").innerHTML=shell("speak","","1 / "+SPK.items.length);
   if(load("twk2_micok",false))spStart();else spGate();
 }
+
+/* Speaking Station: full-sentence practice built from the level's missions */
+const STATION=[
+  {id:"say",name:"Say It!",es:"Di la frase",icon:"🗣️",bg:"var(--sky)",desc:"Listen to Tronny and say full sentences."},
+  {id:"order",name:"Order & Say",es:"Ordena y di",icon:"🧩",bg:"var(--mint)",desc:"Put the words in order and say the sentence."},
+  {id:"complete",name:"Complete & Say",es:"Completa y di",icon:"✏️",bg:"var(--butter)",desc:"Choose the missing word and say the whole sentence."}
+];
+const PICK={};  /* level id → mission number, or "mix" for every mission of the level */
+function pickOf(lv){return PICK[lv]===undefined?"mix":PICK[lv];}
+function stationHtml(Lv){
+  const pick=pickOf(Lv.id);
+  const chips='<button class="pchip'+(pick==="mix"?' on':'')+'" onclick="setPick(\''+Lv.id+'\',\'mix\')">🎲 All missions · Todas</button>'+
+    Lv.missions.map(m=>'<button class="pchip'+(pick===m.n?' on':'')+'" onclick="setPick(\''+Lv.id+'\','+m.n+')" title="'+esc(m.name)+'">'+m.emoji+' '+m.n+'</button>').join("");
+  const tiles=STATION.map(s=>{const r=BEST[Lv.id+"|station|"+s.id]||0;
+    return '<div class="stile" style="background:'+s.bg+'" onclick="goStation(\''+s.id+'\')">'+(r?'<span class="rate">'+starsTxt(r)+'</span>':'')+
+      '<div class="ic">'+s.icon+'</div><b>'+s.name+'</b><small>'+s.es+'</small><span>'+s.desc+'</span></div>';}).join("");
+  return '<div class="station" id="station"><div class="st-head"><div class="st-ic">🎤</div><div><h2>Speaking Station</h2>'+
+    '<p>Speak English with full sentences: Tronny listens and gives you stars! · Habla inglés con frases completas: Tronny te escucha y te da estrellas.</p></div></div>'+
+    '<div class="st-pick"><span>Practise with · Practicar con:</span>'+chips+'</div><div class="stiles">'+tiles+'</div></div>';
+}
+function setPick(lv,v){PICK[lv]=v;const el=$("station");if(el)el.outerHTML=stationHtml(L(lv));}
+function cleanSay(s){
+  return String(s).replace(/\([^)]*\)/g," ").replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{FE0F}\u{200D}]/gu," ")
+    .replace(/\s+/g," ").replace(/\s+([.?!,])/g,"$1").trim();
+}
+/* short story sentences without dialogue quotes */
+function storySentences(m){
+  return (m.story.text.join(" ").match(/[^.!?]+[.!?]+/g)||[]).map(s=>s.trim())
+    .filter(s=>{const n=s.split(/\s+/).length;return n>=4&&n<=14&&!/["“”‘’—…]|(^|\s)'|'(\s|$)/.test(s);});
+}
+function stationItems(type){
+  const Lv=L(CUR.lv),pick=pickOf(CUR.lv),ms=pick==="mix"?Lv.missions:Lv.missions.filter(m=>m.n===pick);
+  let pool=[];
+  ms.forEach(m=>{
+    if(type==="say")pool=pool.concat(m.sentences.concat(storySentences(m)).map(s=>({kind:"sent",text:s})));
+    if(type==="order")pool=pool.concat(m.sentences.filter(s=>s.split(" ").length>=3).map(s=>{
+      const a=s.replace(/[.?!]+$/,""),w=a.split(" ");let sh=shuffle(w);if(sh.join(" ")===a)sh=sh.reverse();
+      return {kind:"order",text:s,words:sh,first:w[0]};}));
+    if(type==="complete")pool=pool.concat(m.grammar.filter(g=>!/[=+]/.test(g.q)&&!/^\d/.test(g.q))
+      .map(g=>({kind:"gap",q:g.q,o:g.o,a:g.a,opts:shuffle(g.o),text:cleanSay(g.q.replace("___",g.o[g.a]))}))
+      .filter(it=>{const n=it.text.split(/\s+/).length;return n>=3&&n<=16;}));
+  });
+  const seen=new Set();
+  return shuffle(pool.filter(it=>!seen.has(it.text)&&seen.add(it.text))).slice(0,6);
+}
+function goStation(type){
+  const lv=CUR.lv;stopSpeech();
+  CUR={view:"station",lv:lv,mi:null,act:type};setNav("levels");
+  const Lv=L(lv),S=STATION.find(s=>s.id===type),pick=pickOf(lv),pm=pick==="mix"?null:Lv.missions.find(m=>m.n===pick);
+  SPK={mode:type,station:true,items:stationItems(type),i:0,self:[],noMic:false,state:"idle",busy:false,err:null};
+  $("app").innerHTML='<button class="back" onclick="goLevel(\''+lv+'\')">← '+Lv.emoji+' '+Lv.name+' · Speaking Station</button>'+
+    '<div class="stage"><div class="stage-h"><h2>'+S.icon+' '+S.name+'</h2><span class="count" id="cnt">1 / '+SPK.items.length+'</span></div>'+
+    '<p class="hint">'+(pm?pm.emoji+' Mission '+pm.n+' · '+esc(pm.name):'🎲 All the missions of '+Lv.name+' · Todas las misiones')+'</p>'+bubble(type)+'<div id="stage"></div></div>';
+  if(load("twk2_micok",false))spStart();else spGate();
+  autoInstr(type);scrollTop();
+}
+
 function spGate(){
-  $("stage").innerHTML='<div class="sp-gate"><div class="big">🎤</div><h3 class="baloo">Speak Up! uses the microphone</h3>'+
-    '<p>Ask a grown-up to say yes. · <b>Speak Up! usa el micrófono: pide a un adulto que lo autorice.</b></p>'+
+  $("stage").innerHTML='<div class="sp-gate"><div class="big">🎤</div><h3 class="baloo">Speaking uses the microphone</h3>'+
+    '<p>Ask a grown-up to say yes. · <b>Esta actividad usa el micrófono: pide a un adulto que lo autorice.</b></p>'+
     '<p class="clue">🔒 Your voice stays on this device. It is never saved or sent. · Tu voz se procesa en este equipo; no se guarda ni se envía.</p>'+
     '<div class="row"><button class="btn" onclick="spAgree()">👍 OK, let\'s go!</button><button class="btn alt" onclick="spNoMic()">🗣️ Practise without microphone</button></div></div>';
 }
+/* Tronny reads the model only when it doesn't give the answer away */
+function spModel(it){if(it&&(it.kind==="word"||it.kind==="sent"))speakWhenFree(it.text);}
+function spReveal(it){return it.kind==="word"||it.kind==="sent"||!!it.done||(it.att||0)>=2;}
 function spAgree(){save("twk2_micok",true);spStart();}
-function spStart(){spDraw("idle");loadASR().catch(()=>{});speakWhenFree(SPK.items[SPK.i].text);}
-function spNoMic(){SPK.noMic=true;SPK.err=null;spDraw("idle");speakWhenFree(SPK.items[SPK.i].text);}
+function spStart(){spDraw("idle");loadASR().catch(()=>{});spModel(SPK.items[SPK.i]);}
+function spNoMic(){SPK.noMic=true;SPK.err=null;spDraw("idle");spModel(SPK.items[SPK.i]);}
 function spShowErr(msg){SPK.err=msg+'<div class="row" style="justify-content:flex-start"><button class="btn sm alt" onclick="spNoMic()">🗣️ Practicar sin micrófono</button></div>';spDraw("idle");}
 function spDraw(state){
-  const S=SPK,it=S.items[S.i],n=S.items.length;if(state)S.state=state;
-  const st=S.state,working=st==="rec"||st==="proc"||st==="wait",young=LEVELS.findIndex(l=>l.id===CUR.lv)<=1;
+  const S=SPK;if(!S||!$("stage"))return;
+  if(!S.items.length){$("stage").innerHTML='<p class="hint center">No sentences here yet. · Todavía no hay frases aquí.</p>';return;}
+  const it=S.items[S.i],n=S.items.length;if(state)S.state=state;
+  const st=S.state,working=st==="rec"||st==="proc"||st==="wait",young=LEVELS.findIndex(l=>l.id===CUR.lv)<=1,rv=spReveal(it);
   $("cnt").textContent=(S.i+1)+" / "+n;
-  const prompt=it.kind==="word"
-    ?(it.e?'<div class="sp-pic">'+it.e+'</div>':it.d?'<p class="defclue">'+esc(it.d)+'</p>':'')+'<div class="sp-word">'+esc(it.text)+'</div>'
-    :'<div class="sp-sent">'+esc(it.text)+'</div>';
+  let prompt;
+  if(it.kind==="word")prompt=(it.e?'<div class="sp-pic">'+it.e+'</div>':it.d?'<p class="defclue">'+esc(it.d)+'</p>':'')+'<div class="sp-word">'+esc(it.text)+'</div>';
+  else if(it.kind==="order")prompt='<div class="sp-chips">'+it.words.map(w=>'<span>'+esc(w)+'</span>').join("")+'</div>'+
+    (/\?$/.test(it.text)?'<p class="sp-tip">It\'s a question (?) · Es una pregunta</p>':'')+
+    (rv?'<div class="sp-answer">✓ '+esc(it.text)+'</div>':it.att?'<p class="sp-tip">💡 Starts with: <b>'+esc(it.first)+'</b></p>':'');
+  else if(it.kind==="gap")prompt='<div class="sp-sent">'+gapHtml(it.q,rv?it.o[it.a]:null)+'</div><div class="sp-opts">'+
+    it.opts.map(o=>'<span class="'+(rv&&o===it.o[it.a]?'right':it.chosen&&it.chosen!=="ok"&&o===it.chosen?'said':'')+'">'+esc(o)+'</span>').join("")+'</div>';
+  else prompt='<div class="sp-sent">'+esc(it.text)+'</div>';
+  const label={word:"🗣️ Say the word",sent:"💬 Say the sentence",order:"🧩 Put the words in order and say the sentence",gap:"✏️ Choose the right word and say the whole sentence"}[it.kind];
+  const listen=rv?'<div class="row"><button class="btn sm alt" onclick="speak(SPK.items[SPK.i].text)">🔊 Listen</button><button class="btn sm alt" onclick="speak(SPK.items[SPK.i].text,\'en\',.6)">🐢 Slow</button></div>':'';
   let mid;
   if(st==="rec")mid='<button class="mic rec" onclick="spRecord()" aria-label="Stop">⏹</button><div class="sp-live">🔴 Speak now… <span class="meter"><i id="spMeter"></i></span></div><p class="clue">It stops when you finish. · Se detiene solo cuando terminas.</p>';
   else if(st==="proc"||st==="wait")mid='<div class="sp-wait"><span class="spin"></span>Tronny is listening… 🤖'+(st==="wait"?' <b>'+ASR.pct+'%</b>':'')+'</div>';
@@ -4026,20 +4127,20 @@ function spDraw(state){
   let res=S.err?'<div class="notice">'+S.err+'</div>':'';
   if(st==="result"){
     const s=it.last;
-    res+=s?'<div class="sp-stars">'+"⭐".repeat(s)+'<span class="dim">'+"⭐".repeat(3-s)+'</span></div><div class="sp-msg">'+["","Good try! Listen and say it again. 👂","Great job! 🎉","Super clear! 🚀"][s]+'</div>'
+    res+=s?'<div class="sp-stars">'+"⭐".repeat(s)+'<span class="dim">'+"⭐".repeat(3-s)+'</span></div><div class="sp-msg">'+(it.msg||["","Good try! Listen and say it again. 👂","Great job! 🎉","Super clear! 🚀"][s])+'</div>'
       :'<div class="sp-msg">Listen to your voice and compare! 🎧</div>';
     if(it.heard&&!young)res+='<div class="sp-heard">Tronny heard: “<i>'+esc(it.heard)+'</i>”</div>';
+    if(!rv)res+='<p class="sp-tip center">After 2 tries you will see the answer. · Después de 2 intentos verás la respuesta.</p>';
   }
-  const cmp=it.url&&!working?'<div class="row"><button class="btn sm alt" onclick="speak(SPK.items[SPK.i].text)">🔊 Tronny</button><button class="btn sm peach" onclick="spPlay()">▶ My voice</button></div>':'';
+  const cmp=it.url&&!working?'<div class="row">'+(rv?'<button class="btn sm alt" onclick="speak(SPK.items[SPK.i].text)">🔊 Tronny</button>':'')+'<button class="btn sm peach" onclick="spPlay()">▶ My voice</button></div>':'';
   const faces=(it.url||S.noMic)&&!working?'<div class="faces"><p>How did it sound? · ¿Cómo te salió?</p><button onclick="spNext(3)" aria-label="Great">😃</button><button onclick="spNext(2)" aria-label="Good">🙂</button><button onclick="spNext(1)" aria-label="Needs practice">🤔</button></div>':'';
   $("stage").innerHTML='<div id="asrNote"></div><div class="progress"><i style="width:'+(S.i/n*100)+'%"></i></div>'+
-    '<div class="sp-card"><div class="sp-kind">'+(it.kind==="word"?"🗣️ Say the word":"💬 Say the sentence")+'</div>'+prompt+
-    '<div class="row"><button class="btn sm alt" onclick="speak(SPK.items[SPK.i].text)">🔊 Listen</button><button class="btn sm alt" onclick="speak(SPK.items[SPK.i].text,\'en\',.6)">🐢 Slow</button></div></div>'+
-    (S.noMic?'<p class="sp-say">Say it out loud! 🗣️ · ¡Dilo en voz alta!</p>':'<div class="sp-mid">'+mid+'</div>')+res+cmp+faces+
+    '<div class="sp-card"><div class="sp-kind">'+label+'</div>'+prompt+listen+'</div>'+
+    (S.noMic?'<p class="sp-say">Say it out loud! 🗣️ · ¡Dilo en voz alta!</p>'+(rv?'':'<div class="row"><button class="btn sm alt" onclick="SPK.items[SPK.i].att=2;spDraw()">👀 Show the answer · Ver la respuesta</button></div>'):'<div class="sp-mid">'+mid+'</div>')+res+cmp+faces+
     (working?'':'<div class="row"><button class="btn sm alt" onclick="spNext(0)">Skip →</button></div>');
   paintASR();
 }
-function spPlay(){const it=SPK.items[SPK.i];if(it.url){stopSpeech();new Audio(it.url).play().catch(()=>{});}}
+function spPlay(){const it=SPK&&SPK.items[SPK.i];if(it&&it.url){if(canSpeak())try{speechSynthesis.cancel();}catch(e){}new Audio(it.url).play().catch(()=>{});}}
 async function spRecord(){
   if(SREC){spStop();return;}
   const S=SPK;if(!S||S.busy)return;
@@ -4049,11 +4150,12 @@ async function spRecord(){
   let stream;
   try{stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true}});}
   catch(e){return spShowErr(micErrorMsg(e));}
+  if(SPK!==S){stream.getTracks().forEach(t=>t.stop());return;}
   if(canSpeak())try{speechSynthesis.cancel();}catch(e){}
   const AC=window.AudioContext||window.webkitAudioContext,ctx=new AC();try{await ctx.resume();}catch(e){}
   const an=ctx.createAnalyser();an.fftSize=512;ctx.createMediaStreamSource(stream).connect(an);
   const mr=new MediaRecorder(stream);
-  const r={stream,ctx,an,mr,chunks:[],t0:Date.now(),speech:false,sp0:0,sil:null,floor:.01,raf:0,max:S.items[S.i].kind==="sent"?15000:9000};
+  const r={sess:S,stream,ctx,an,mr,chunks:[],t0:Date.now(),speech:false,sp0:0,sil:null,floor:.01,raf:0,max:S.items[S.i].kind==="word"?9000:15000};
   mr.ondataavailable=e=>{if(e.data&&e.data.size)r.chunks.push(e.data);};
   mr.onstop=()=>spFinish(r);
   SREC=r;mr.start();spDraw("rec");spVad(r);
@@ -4082,12 +4184,36 @@ function spStop(){
   try{if(r.mr.state!=="inactive")r.mr.stop();else spFinish(r);}catch(e){spFinish(r);}
   r.stream.getTracks().forEach(t=>t.stop());
   try{r.ctx.close();}catch(e){}
-  if(!r.cancel&&SPK){SPK.busy=true;spDraw("proc");}
+  if(!r.cancel&&SPK===r.sess){SPK.busy=true;spDraw("proc");}
 }
 function spCancel(){if(SREC){SREC.cancel=true;spStop();}}
+
+/* ---- scoring for each kind of item (always generous, never a percentage) ---- */
+function lcsRatio(T,H){
+  const n=T.length,m=H.length;if(!n)return 0;
+  let prev=new Array(m+1).fill(0);
+  for(let i=1;i<=n;i++){const row=[0];for(let j=1;j<=m;j++)row[j]=wsim(T[i-1],H[j-1])>=.75?prev[j-1]+1:Math.max(prev[j],row[j-1]);prev=row;}
+  return prev[m]/n;
+}
+function orderResult(target,heard){
+  const seq=lcsRatio(stoks(target),stoks(heard)),cov=speakScore(target,heard);
+  /* right words in the wrong order: one star and a hint, never a pass */
+  if(seq<.85&&cov>=.75&&cov-seq>=.15)return {stars:1,msg:"↕ The words are right — check the order! · Las palabras están bien: revisa el orden."};
+  return {stars:seq>=.85?3:seq>=.65?2:1,msg:null};
+}
+function seqCount(hay,nd){if(!nd.length)return 0;let c=0;for(let i=0;i+nd.length<=hay.length;i++)if(nd.every((w,k)=>wsim(w,hay[i+k])===1))c++;return c;}
+function gapResult(it,heard){
+  const H=stoks(heard),out=stoks(it.q.replace("___"," ")),right=it.o[it.a];
+  const said=o=>{const t=stoks(o);return seqCount(H,t)>seqCount(out,t);};
+  if(said(right))return {chosen:"ok",stars:Math.max(2,speakStars(speakScore(it.text,heard))),msg:null};
+  const wrong=it.o.find((o,i)=>i!==it.a&&said(o));
+  if(wrong)return {chosen:wrong,stars:1,msg:"✗ You said “"+esc(wrong)+"”. Try another word! · Prueba otra palabra."};
+  if(speakScore(it.text,heard)>=.85)return {chosen:"ok",stars:3,msg:null};
+  return {chosen:null,stars:1,msg:"We couldn't hear the missing word. Say the whole sentence! · No escuchamos la palabra que falta: di la frase completa."};
+}
 async function spFinish(r){
   if(r.done)return;r.done=true;
-  const S=SPK;if(r.cancel||!S||CUR.act!=="speak"){if(S)S.busy=false;return;}
+  const S=r.sess;if(r.cancel||!S||S!==SPK){if(S)S.busy=false;return;}
   const it=S.items[S.i];
   try{
     const blob=new Blob(r.chunks,{type:r.mr.mimeType||"audio/webm"});
@@ -4105,29 +4231,40 @@ async function spFinish(r){
       const out=await asr(audio);
       heard=String(out&&out.text||"").replace(/\[[^\]]*\]|\([^)]*\)/g," ").replace(/\s+/g," ").trim();
     }catch(e){heard=null;}  /* no voice recognition: the child still compares by ear */
+    if(S!==SPK)return;
     if(heard!==null){
       const low=heard.toLowerCase().replace(/[.!?,]/g,"").trim();
       if(!stoks(heard).length||(["you","thank you","thanks for watching","bye"].includes(low)&&!stoks(it.text).join(" ").includes(low)))throw {user:NO_SPEECH};
     }
-    const stars=heard===null?0:speakStars(speakScore(it.text,heard));
-    it.heard=heard;it.last=stars;it.stars=Math.max(it.stars||0,stars);
-    if(stars>=2)award(key("speak",it.text),1);
+    let stars=0,msg=null,chosen=null;
+    if(heard!==null){
+      if(it.kind==="order"){const o=orderResult(it.text,heard);stars=o.stars;msg=o.msg;}
+      else if(it.kind==="gap"){const g=gapResult(it,heard);stars=g.stars;msg=g.msg;chosen=g.chosen;}
+      else stars=speakStars(speakScore(it.text,heard));
+    }
+    it.att=(it.att||0)+1;it.heard=heard;it.last=stars;it.msg=msg;it.chosen=chosen;it.stars=Math.max(it.stars||0,stars);
+    if(stars>=2){it.done=true;award(S.station?CUR.lv+"|station|"+S.mode+"|"+it.text:key("speak",it.text),1);}
     S.err=null;S.busy=false;spDraw("result");
   }catch(e){
+    if(S!==SPK)return;
     S.busy=false;S.err=e&&e.user?e.user:"⚠️ No se pudo procesar el audio. Inténtalo otra vez.";spDraw("idle");
   }
 }
 function spNext(self){
-  const S=SPK;spCancel();
+  const S=SPK;if(!S)return;spCancel();
   if(self)S.self.push(self);
   S.err=null;S.i++;
   if(S.i>=S.items.length)return spDone();
-  spDraw("idle");speakWhenFree(S.items[S.i].text);
+  spDraw("idle");spModel(S.items[S.i]);
 }
 function spDone(){
   const S=SPK,n=S.items.length,scored=S.items.some(x=>x.stars),good=S.items.filter(x=>(x.stars||0)>=2).length;
-  const r=scored?rating(good,n):S.self.length?2:1;
-  $("stage").innerHTML=doneBox("speak",good,n,r,scored?"You said "+good+" of "+n+" clearly!":"Great speaking practice!");
+  const r=scored?rating(good,n):S.self.length?2:1,msg=scored?"You said "+good+" of "+n+" clearly!":"Great speaking practice!";
+  if(!S.station){$("stage").innerHTML=doneBox("speak",good,n,r,msg);return;}
+  const k=CUR.lv+"|station|"+S.mode;if(!BEST[k]||r>BEST[k]){BEST[k]=r;save("twk2_best",BEST);}
+  $("stage").innerHTML='<div class="done-box"><div class="big">'+(r===3?"🏆":r===2?"🎉":"💪")+'</div><h2>'+msg+'</h2><div class="rating">'+starsTxt(r)+'</div>'+
+    '<p class="hint">'+(r===3?"Perfect! You are a speaking star!":r===2?"Great work! Keep practising.":"Good try! Practise again to get better.")+'</p>'+
+    '<div class="row"><button class="btn alt" onclick="goStation(\''+S.mode+'\')">🔄 More sentences</button><button class="btn" onclick="goLevel(CUR.lv)">🎤 Speaking Station</button></div></div>';
 }
 
 /* =========================================================
@@ -4204,12 +4341,13 @@ function testResult(idx){
    INIT
    ========================================================= */
 $("starCount").textContent=STARS;
-/* Direct links for homework: ?level=moon  or  ?level=moon&mission=3 */
+/* Direct links: ?level=moon · ?level=moon&mission=3 · ?go=test (placement test) */
 (()=>{
   const q=new URLSearchParams(location.search),lv=q.get("level"),mi=parseInt(q.get("mission"),10);
   if(lv&&L(lv)){
     if(!isNaN(mi)&&hasContent(L(lv).missions.find(m=>m.n===mi)))goMission(lv,mi);else goLevel(lv);
-  }else go("home");
+  }else if(q.get("go")==="test")go("test");
+  else go("home");
 })();
 </script>
 </body>
