@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TRONWELL KIDS · Practice Zone, Game Zone & Talk Club</title>
+<title>TRONWELL KIDS · Practice Zone & Talk Club</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-<meta name="description" content="TRONWELL KIDS: English practice for kids and teens — Practice Zone missions, Game Zone and Talk Club.">
+<meta name="description" content="TRONWELL KIDS: English practice for kids and teens — Practice Zone missions and Talk Club conversation lessons.">
 <!-- Twemoji: the same emoji pictures on every computer, tablet and phone -->
 <script src="https://cdn.jsdelivr.net/npm/@twemoji/api@15.1.0/dist/twemoji.min.js" crossorigin="anonymous" defer></script>
 <style>
@@ -100,7 +100,7 @@ footer b{color:var(--blue)}
 .mylevel{display:inline-flex;align-items:center;gap:8px;margin-top:16px;background:var(--orange-soft);color:#7a5200;font-weight:800;padding:7px 14px;border-radius:999px;font-size:14px;cursor:pointer}
 
 /* ── DOORS (3 zones) ── */
-.doors{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.doors{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
 .door{position:relative;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:#fff;cursor:pointer;text-align:left;transition:.2s;display:flex;flex-direction:column;text-decoration:none;color:var(--ink)}
 .door:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(17,24,39,.10);border-color:var(--c)}
 .door .im{height:170px;position:relative;background:var(--tint)}
@@ -186,7 +186,7 @@ footer b{color:var(--blue)}
 .act.feature .ic{width:64px;height:64px;font-size:32px}
 .newtag,.act .newtag{background:var(--pink-d);color:#fff;display:inline-block;font-size:10.5px;font-weight:900;padding:2px 8px;border-radius:999px;margin-left:8px;vertical-align:middle}
 
-/* Game Zone + Talk Club strips */
+/* Talk Club strip */
 .gzone{margin-top:20px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;background:linear-gradient(110deg,#141a3a,#25306b 60%,#3a2a7a);color:#f5f7ff;border-radius:20px;padding:16px 20px;text-decoration:none}
 .gzone .gz-ic{font-size:36px;line-height:1}
 .gzone b{display:block;font-size:20px;font-weight:900;color:#ffd166}
@@ -520,7 +520,7 @@ body.ag-teen .hero .tr-say{left:92px;bottom:96px}
       <div class="lw">Tronwell</div>
       <div class="lbar"><span>Always More</span><i></i></div>
     </div>
-    <div class="kidstag" onclick="go('home')">Kids<small>Practice · Games · Talk</small></div>
+    <div class="kidstag" onclick="go('home')">Kids<small>Practice · Talk</small></div>
     <nav id="nav"></nav>
   </div>
 </header>
@@ -528,7 +528,7 @@ body.ag-teen .hero .tr-say{left:92px;bottom:96px}
 <main id="app"></main>
 
 <footer>
-  <b>TRONWELL KIDS</b> · Practice Zone · Game Zone · Talk Club · Dudas: kids@tronwell.cl
+  <b>TRONWELL KIDS</b> · Practice Zone · Talk Club · Dudas: kids@tronwell.cl
   <br>🎤 Speak Up! processes your voice on this device only — nothing is saved or sent. · La voz se procesa solo en este equipo: no se guarda ni se envía.
 </footer>
 
@@ -3635,11 +3635,6 @@ function nextAct(act){const i=ACTS.findIndex(a=>a.id===act);if(i<ACTS.length-1)g
 /* =========================================================
    HOME
    ========================================================= */
-/* Game Zone: 4 arcade games (shooter, platformer, racer, detective) that use the student's level */
-const GAMEZONE_URL="../tronwell-game-zone/";
-function gameZoneHtml(lvId){
-  return '<a class="gzone" href="'+GAMEZONE_URL+(lvId?"?level="+lvId:"")+'"><div class="gz-ic">🕹️</div><div><b>Game Zone</b><span>Grammar Blaster · Word Jumper · Tense Racer · English Detective</span></div><span class="gz-go">Play →</span></a>';
-}
 function renderHome(){
   const my=MYLEVEL&&L(MYLEVEL);
   const lvBadge=my?'<div class="mylevel" onclick="goLevel(\''+my.id+'\')">'+my.emoji+' '+(KIDNAME?esc(KIDNAME)+', your':'Your')+' level: '+my.name+' →</div>':"";
@@ -4515,7 +4510,6 @@ function renderNav(){
   const who=PROFILE?(isTeacher()?"👩‍🏫 Teacher":"🎒 "+ageLabel())+(MYLEVEL?" · "+esc(L(MYLEVEL).name):"")+" ✎":"👋 Start here";
   $("nav").innerHTML='<button data-v="home" onclick="go(\'home\')">Home</button>'+
     '<button data-v="levels" onclick="go(\'levels\')">📚 Practice Zone</button>'+
-    '<a href="'+GAMEZONE_URL+(MYLEVEL?"?level="+MYLEVEL:"")+'">🎮 Game Zone</a>'+
     '<a href="talk.html'+(MYLEVEL?"#"+MYLEVEL:"")+'">💬 Talk Club</a>'+
     (isTeacher()?'':'<button data-v="test" onclick="go(\'test\')">🎯 Level test</button>')+
     '<button data-v="stars" class="star-pill" onclick="go(\'stars\')">'+starIcon()+' <span id="starCount">'+STARS+'</span>'+(isTeen()?' XP':'')+'</button>'+
@@ -4581,8 +4575,7 @@ function saveWelcome(){
 function doorsHtml(){
   const lv=MYLEVEL&&L(MYLEVEL);
   return '<div class="doors">'+
-    '<button class="door" style="--c:var(--blue)" onclick="'+(lv?"goLevel('"+lv.id+"')":"go('levels')")+'"><div class="im">'+imgTag(pxw(DOOR.practice,700),"")+'<b>📚 Practice Zone</b></div><div class="bd"><p>'+(isTeen()?"Missions with 10 activities each: vocabulary, grammar, stories and speaking.":"Missions with 10 games each: words, grammar, stories and Speak Up!")+'</p><span class="go">'+(lv?"Open "+esc(lv.name)+" →":"Choose your level →")+'</span></div></button>'+
-    '<a class="door" style="--c:var(--lav-d)" href="'+GAMEZONE_URL+(lv?"?level="+lv.id:"")+'"><div class="im">'+imgTag(pxw(DOOR.game,700),"")+'<b>🎮 Game Zone</b></div><div class="bd"><p>Four games with the English of your level: Grammar Blaster, Word Jumper, Tense Racer and English Detective.</p><span class="go">Play →</span></div></a>'+
+    '<button class="door" style="--c:var(--blue)" onclick="'+(lv?"goLevel('"+lv.id+"')":"go('levels')")+'"><div class="im">'+imgTag(pxw(DOOR.practice,700),"")+'<b>📚 Practice Zone</b></div><div class="bd"><p>'+(isTeen()?"Missions with 10 activities each: vocabulary, grammar, stories and speaking.":"Missions with 10 activities each: words, grammar, stories and Speak Up!")+'</p><span class="go">'+(lv?"Open "+esc(lv.name)+" →":"Choose your level →")+'</span></div></button>'+
     '<a class="door" style="--c:var(--pink-d)" href="talk.html'+(lv?"#"+lv.id:"")+'"><div class="im">'+imgTag(pxw(DOOR.talk,700),"")+'<b>💬 Talk Club</b></div><div class="bd"><p>60-minute conversation lessons for every mission — with topics for your age.</p><span class="go">'+(lv?"Talk about "+esc(lv.name)+" →":"Start talking →")+'</span></div></a>'+
     '</div>';
 }
@@ -4598,15 +4591,15 @@ function renderHome(){
   const heroImg=teacher?DOOR.teacher:HERO[PROFILE.age];
   const h1=teacher?'Plan it. <em>Project it.</em><br><span>Play it.</span>':teen?'Your English.<br><em>Your way.</em><br><span>Level up.</span>':'Learn it. <em>Play it.</em><br><span>Say it!</span>';
   const lead=teacher?"Every mission is ready for class: project the activities, run a class timer, show the answers and follow the suggested 60-minute plan."
-    :teen?"Missions, games and speaking practice at your level — from your first words to real fluency. Earn XP, unlock badges and climb from Opening Act to Legend."
-    :"Practise English with games, stories and speaking challenges at your level. Collect stars, unlock badges and play in the Game Zone!";
+    :teen?"Missions, conversation lessons and speaking practice at your level — from your first words to real fluency. Earn XP, unlock badges and climb from Opening Act to Legend."
+    :"Practise English with fun activities, stories and speaking challenges at your level. Collect stars, unlock badges and join the Talk Club!";
   let h='<section class="hero"><div><div class="eyebrow">'+(teacher?"Teacher mode · ages "+ageLabel():"Tronwell Kids · ages "+ageLabel())+'</div><h1>'+h1+'</h1><p class="lead">'+lead+'</p>'+
-    (PROFILE.age==="6"?'<p class="lead" style="font-size:14.5px;margin-top:6px"><i>Practica inglés con juegos, cuentos y desafíos para hablar. ¡Junta estrellas!</i></p>':'')+
+    (PROFILE.age==="6"?'<p class="lead" style="font-size:14.5px;margin-top:6px"><i>Practica inglés con actividades, cuentos y desafíos para hablar. ¡Junta estrellas!</i></p>':'')+
     '<div class="cta">'+(nx?'<button class="btn or" onclick="goMission(\''+my.id+'\','+nx.n+')">'+(teacher?"Open":"Continue:")+' Mission '+nx.n+' · '+esc(nx.name)+' →</button>':'<button class="btn or" onclick="go(\''+(teacher?"levels":"test")+'\')">'+(teacher?"Choose a level →":"🎯 Find my level →")+'</button>')+
-    '<button class="btn soft" onclick="go(\'levels\')">📚 Practice Zone</button><a class="btn soft" href="'+GAMEZONE_URL+(my?"?level="+my.id:"")+'">🎮 Game Zone</a></div>'+
+    '<button class="btn soft" onclick="go(\'levels\')">📚 Practice Zone</button><a class="btn soft" href="talk.html'+(my?"#"+my.id:"")+'">💬 Talk Club</a></div>'+
     '<div class="stats"><div><b>'+STARS+'</b><span>'+(teen?"XP":"Stars")+'</span></div><div><b>'+allDone()+'</b><span>Missions done</span></div><div><b>'+(my?esc(my.name):"—")+'</b><span>'+(my?"Level "+lvNum(my)+" · "+my.cefr:"Your level")+'</span></div></div></div>'+
     '<div style="position:relative"><div class="ph">'+imgTag(pxw(heroImg,1200),"")+'</div></div></section>';
-  h+='<section class="sec"><div class="sec-h"><div><h2>Three zones, one place</h2><p>Practise, play and talk — all with the English of your level.</p></div></div>'+doorsHtml()+'</section>';
+  h+='<section class="sec"><div class="sec-h"><div><h2>Two zones, one place</h2><p>Practise and talk — all with the English of your level.</p></div></div>'+doorsHtml()+'</section>';
   if(my){
     h+='<section class="sec"><div class="sec-h"><div><div class="eyebrow">Level '+lvNum(my)+' · '+my.cefr+'</div><h2 style="margin-top:6px">'+(teacher?"Your class level: ":"Your level: ")+esc(my.name)+'</h2><p>'+lvDone(my)+' of '+my.missions.length+' missions done. '+CAN[my.id]+'</p></div><button class="btn soft" onclick="goLevel(\''+my.id+'\')">All '+my.missions.length+' missions →</button></div><div class="missions" style="margin-top:0">';
     const start=Math.max(0,my.missions.indexOf(nx));my.missions.slice(start,start+3).concat(start+3>my.missions.length?my.missions.slice(0,start+3-my.missions.length):[]).slice(0,3).forEach(m=>{h+=missionCard(my,m);});
@@ -4635,13 +4628,10 @@ function renderLevels(){
     (isTeacher()?'':'<button class="btn soft" onclick="go(\'test\')">🎯 Not sure? Take the level test</button>')+'</div>'+levelsGrid();
   h+='<section class="sec"><div class="sec-h"><div><h2>Inside every mission</h2><p>'+ACTS.length+' activities, from first words to speaking.</p></div></div><div class="acts" style="margin-top:0">'+
     ACTS.map(a=>'<div class="act" style="cursor:default"><div class="ic" style="background:'+a.bg+'">'+a.icon+'</div><div><b>'+a.name+'</b><span>'+a.desc+'</span></div></div>').join("")+'</div></section>';
-  h+=gameZoneHtml(MYLEVEL);
   $("app").innerHTML=h;
 }
 function talkStrip(lvId,n){return '<a class="gzone tzone" href="talk.html#'+lvId+(n!==undefined?"-"+n:"")+'"><div class="gz-ic">💬</div><div><b>Talk Club</b><span>'+(n!==undefined?"The 60-minute conversation lesson for this mission":"A 60-minute conversation lesson for every mission of this level")+'</span></div><span class="gz-go">Talk →</span></a>';}
-function gameZoneHtml(lvId){
-  return '<a class="gzone" href="'+GAMEZONE_URL+(lvId?"?level="+lvId:"")+'"><div class="gz-ic">🕹️</div><div><b>Game Zone</b><span>Grammar Blaster · Word Jumper · Tense Racer · English Detective — with the English of your level</span></div><span class="gz-go">Play →</span></a>';
-}
+function gameZoneHtml(lvId){return "";}  /* still called by old code in the original app */
 
 /* ---------- LEVEL ---------- */
 function renderLevel(){
@@ -4650,7 +4640,7 @@ function renderLevel(){
     '<div class="lvhead" style="'+lvCol(Lv)+'"><div class="big">'+(i+1)+'</div><div><div class="eyebrow" style="color:var(--c)">Level '+(i+1)+' · '+Lv.cefr+'</div><h1 style="margin-top:4px">'+esc(Lv.name)+'</h1><p>'+esc(Lv.desc)+'</p>'+
     '<div class="lvbar" style="max-width:320px;margin-top:10px"><i style="width:'+(n?d/n*100:0)+'%"></i></div><p style="font-size:13px;margin-top:4px">'+d+' / '+n+' missions done</p></div>'+
     '<div class="can"><b>At this level you can…</b>'+CAN[Lv.id]+'</div></div>'+
-    gameZoneHtml(Lv.id)+talkStrip(Lv.id)+(Lv.ready?stationHtml(Lv):'<div class="soonbox">🚧 This level is coming soon! · ¡Este nivel viene muy pronto!</div>')+
+    talkStrip(Lv.id)+(Lv.ready?stationHtml(Lv):'<div class="soonbox">🚧 This level is coming soon! · ¡Este nivel viene muy pronto!</div>')+
     '<h2 style="font-size:26px;margin-top:30px">Missions</h2><div class="missions" style="margin-top:12px">';
   Lv.missions.forEach(m=>{h+=missionCard(Lv,m);});
   $("app").innerHTML=h+'</div>';
@@ -4726,13 +4716,6 @@ function renderStars(){
   if(my){h+='<section class="sec"><div class="sec-h"><div><h2>'+esc(my.name)+' · missions</h2><p>'+lvDone(my)+' of '+my.missions.length+' done</p></div></div><div class="missions" style="margin-top:0">'+my.missions.map(m=>missionCard(my,m)).join("")+'</div></section>';}
   else h+='<p class="hint" style="margin-top:18px">You haven\'t chosen your level yet. <a href="#" onclick="go(\'test\');return false">Take the level test</a></p>';
   $("app").innerHTML=h;
-}
-
-/* ---------- TALK CLUB (coming soon) ---------- */
-function renderTalk(){
-  $("app").innerHTML='<div class="soonpage"><div class="sph">'+imgTag(pxw(DOOR.talk,700),"")+'</div><div><div class="eyebrow">Talk Club · coming soon</div><h1 style="margin-top:6px">Let\'s talk!</h1>'+
-    '<p>Conversation lessons for kids and teens at every level: warm-ups, model dialogues, useful phrases, speaking games and role-plays — with topics for your age.</p>'+
-    '<p>Clases de conversación para niños y adolescentes en todos los niveles. ¡Muy pronto!</p><div class="cta"><button class="btn" onclick="go(\'levels\')">📚 Practise now</button><a class="btn soft" href="'+GAMEZONE_URL+'">🎮 Game Zone</a></div></div></div>';
 }
 
 /* ---------- PLACEMENT TEST (look only) ---------- */
